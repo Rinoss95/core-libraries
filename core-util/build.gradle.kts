@@ -5,8 +5,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-group = "com.github.Rinoss95"
-
 android {
     namespace = "com.rinoss95.countries"
     compileSdk = 33
@@ -57,4 +55,14 @@ dependencies {
     // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+}
+
+afterEvaluate {
+    publishing {
+        publications.create<MavenPublication>("release") {
+            group = "com.github.Rinoss95"
+            version = "1"
+            artifactId = "core-util-artifactId"
+        }
+    }
 }
