@@ -6,8 +6,6 @@ plugins {
     alias(libs.plugins.google.ksp)
 }
 
-group = "com.github.Rinoss95"
-
 android {
     namespace = "com.rinoss95.core_ui.lib"
     compileSdk = 32
@@ -73,4 +71,14 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.coil.compose)
     implementation(libs.coil.svg)
+}
+
+afterEvaluate {
+    publishing {
+        publications.create<MavenPublication>("release") {
+            group = "com.github.Rinoss95"
+            version = "1"
+            artifactId = "core-ui-lib-artifactId"
+        }
+    }
 }
