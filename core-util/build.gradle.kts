@@ -1,8 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
+    id("maven-publish")
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
+
+group = "com.github.Rinoss95"
 
 android {
     namespace = "com.rinoss95.countries"
@@ -11,8 +14,6 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 33
-        versionCode 1
-        versionName "1.0"
     }
 
     buildTypes {
