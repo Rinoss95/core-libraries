@@ -60,6 +60,7 @@ dependencies {
 afterEvaluate {
     publishing {
         publications.create<MavenPublication>("release") {
+            from(components["release"])
             group = "com.github.Rinoss95"
             version = "1"
             artifactId = "core-util-artifactId"
