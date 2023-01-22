@@ -20,10 +20,4 @@ rootProject.name = "core"
 // Public modules
 include(
         ":core-util",
-        ":core-ui:lib",
-)
-
-// Private modules
-include(
-        ":core-ui:sample-app"
 )
