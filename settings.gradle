@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "core"
+
+// Public modules
+include(
+        ":core-util",
+        ":core-ui:lib",
+)
+
+// Private modules
+include(
+        ":core-ui:sample-app"
+)
