@@ -1,9 +1,12 @@
 plugins {
+    id("maven-publish")
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.google.ksp)
 }
+
+group = "com.github.Rinoss95"
 
 android {
     namespace = "com.rinoss95.core_ui.lib"
