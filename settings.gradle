@@ -22,3 +22,8 @@ include(
         ":core-util",
         ':core-ui'
 )
+
+// Private modules
+include(
+        ":sample-app",
+)

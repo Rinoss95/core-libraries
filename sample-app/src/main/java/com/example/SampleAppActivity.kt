@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.theme.MyApplicationTheme
-import com.rinoss95.core_ui.list.BaseListItem
+import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.model.ImageData
 
 class SampleAppActivity : ComponentActivity() {
