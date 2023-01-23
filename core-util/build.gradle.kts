@@ -71,7 +71,7 @@ afterEvaluate {
             from(components["release"])
             group = "com.github.Rinoss95"
             version = "1"
-            artifactId = "core-util-artifactId"
+            artifactId = "core-util"
         }
     }
 }

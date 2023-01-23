@@ -98,7 +98,7 @@ afterEvaluate {
             from(components["release"])
             group = "com.github.Rinoss95"
             version = "1"
-            artifactId = "core-ui-artifactId"
+            artifactId = "core-ui"
         }
     }
 }
