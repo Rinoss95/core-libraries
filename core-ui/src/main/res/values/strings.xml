@@ -17,6 +17,7 @@
 <resources>
     <string name="trailing_icon_cd">Tap</string>
     <string name="expand_content">Expand content</string>
+    <string name="collapse_content">Collapse content</string>
     <string name="back_icon">Back icon</string>
     <string name="menu">Menu</string>
     <string name="search">Search</string>
