@@ -20,5 +20,5 @@ rootProject.name = "core"
 // Public modules
 include(
         ":core-util",
-        ":core-ok"
+        ':core-ui'
 )
