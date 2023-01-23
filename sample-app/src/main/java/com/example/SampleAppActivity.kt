@@ -6,11 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.theme.MyApplicationTheme
 import com.rinoss95.core_ui.component.list.BaseListItem
+import com.rinoss95.core_ui.component.list.ExpandableListItem
 import com.rinoss95.core_ui.model.ImageData
 
 class SampleAppActivity : ComponentActivity() {
@@ -48,5 +49,24 @@ fun ExampleItem(
 fun BaseListItemPage() {
     Column {
         ExampleItem()
+
+        var isExpanded by remember {
+            mutableStateOf(false)
+        }
+
+        ExpandableListItem(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            hasDivider = true,
+            isExpanded = isExpanded,
+            onClick = {
+                isExpanded = !isExpanded
+            }) {
+            Column {
+                ExampleItem()
+                ExampleItem()
+                ExampleItem()
+            }
+        }
     }
 }
