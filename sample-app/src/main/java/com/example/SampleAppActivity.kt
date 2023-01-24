@@ -13,6 +13,7 @@ import com.example.theme.MyApplicationTheme
 import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.component.list.ExpandableListItem
 import com.rinoss95.core_ui.model.ImageData
+import com.rinoss95.core_ui.util.uiText
 
 class SampleAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ fun ExampleItem(
         supportingText = "Supporting Text",
         trailingIcon = ImageData.IconImageData(
             Icons.Filled.KeyboardArrowRight,
-            null,
+            "".uiText,
         ),
         hasDivider = true,
     ) {

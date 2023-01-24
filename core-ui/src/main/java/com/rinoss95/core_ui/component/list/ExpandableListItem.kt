@@ -24,6 +24,7 @@ import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.text.BodyLarge
 import com.rinoss95.core_ui.component.text.BodyMedium
 import com.rinoss95.core_ui.model.ImageData
+import com.rinoss95.core_ui.util.uiText
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -65,12 +66,12 @@ fun ExpandableListItem(
                 val iconImage = if (!isExpanded)
                     ImageData.IconImageData(
                         imageVector = Icons.Filled.KeyboardArrowDown,
-                        contentDescriptionRes = R.string.expand_content,
+                        contentDescription = R.string.expand_content.uiText,
                     )
                 else
                     ImageData.IconImageData(
                         imageVector = Icons.Filled.KeyboardArrowUp,
-                        contentDescriptionRes = R.string.collapse_content,
+                        contentDescription = R.string.collapse_content.uiText,
                     )
 
                 ImageComponent(

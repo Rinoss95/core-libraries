@@ -86,7 +86,7 @@ fun CountriesTopAppBar(
                         ImageComponent(
                             imageData = com.rinoss95.core_ui.model.ImageData.IconImageData(
                                 Icons.Filled.ArrowBack,
-                                R.string.exit_search,
+                                R.string.exit_search.uiText,
                             ),
                         )
                     }
@@ -123,7 +123,7 @@ fun CountriesTopAppBar(
                             ImageComponent(
                                 imageData = com.rinoss95.core_ui.model.ImageData.IconImageData(
                                     imageVector = Icons.Filled.Close,
-                                    contentDescriptionRes = R.string.remove_search,
+                                    contentDescription = R.string.remove_search.uiText,
                                 ),
                             )
                         }

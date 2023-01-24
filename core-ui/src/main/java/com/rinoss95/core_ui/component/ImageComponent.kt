@@ -8,28 +8,30 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import com.rinoss95.core_ui.converter.toNetworkImageState
+import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.util.toStringOrEmpty
+import com.rinoss95.core_ui.util.value
 
 @Composable
 fun ImageComponent(
-    imageData: com.rinoss95.core_ui.model.ImageData,
+    imageData: ImageData,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Crop,
-    onState: (com.rinoss95.core_ui.model.ImageData.NetworkImage.State) -> Unit = {},
+    onState: (ImageData.NetworkImage.State) -> Unit = {},
 ) {
     when (imageData) {
-        is com.rinoss95.core_ui.model.ImageData.LocalImageData -> Image(
+        is ImageData.LocalImageData -> Image(
             modifier = modifier,
             contentScale = contentScale,
             painter = painterResource(imageData.imageRes),
-            contentDescription = imageData.contentDescriptionRes.toStringOrEmpty(),
+            contentDescription = imageData.contentDescription.value()
         )
 
-        is com.rinoss95.core_ui.model.ImageData.NetworkImage -> AsyncImage(
+        is ImageData.NetworkImage -> AsyncImage(
             modifier = modifier,
             contentScale = contentScale,
             model = imageData.imageUrl,
-            contentDescription = imageData.contentDescriptionRes.toStringOrEmpty(),
+            contentDescription = imageData.contentDescription.value(),
             onState = {
                 onState(
                     it.toNetworkImageState()
@@ -37,9 +39,9 @@ fun ImageComponent(
             }
         )
 
-        is com.rinoss95.core_ui.model.ImageData.IconImageData -> Icon(
+        is ImageData.IconImageData -> Icon(
             imageData.imageVector,
-            imageData.contentDescriptionRes.toStringOrEmpty()
+            imageData.contentDescription.value()
         )
     }
 }

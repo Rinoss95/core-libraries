@@ -18,6 +18,7 @@ import com.rinoss95.core_ui.component.text.BodyMedium
 import com.rinoss95.core_ui.component.text.LabelSmall
 import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.R
+import com.rinoss95.core_ui.util.uiText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -92,7 +93,7 @@ private fun BaseListItemPreview() {
         supportingText = "Come",
         trailingIcon = ImageData.IconImageData(
             Icons.Filled.KeyboardArrowRight,
-            R.string.expand_content,
+            R.string.expand_content.uiText,
         ),
         hasDivider = true,
     )

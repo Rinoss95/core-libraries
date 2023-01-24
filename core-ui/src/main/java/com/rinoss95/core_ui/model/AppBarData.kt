@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import com.rinoss95.core_ui.R
+import com.rinoss95.core_ui.util.uiText
 
 data class AppBarModel(
     val state: AppBarState = AppBarState(),
@@ -28,14 +29,14 @@ data class AppBarData(
         object Search : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Search,
-                contentDescriptionRes = R.string.search,
+                contentDescription = R.string.search.uiText,
             )
         )
 
         object Home : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Home,
-                contentDescriptionRes = R.string.home,
+                contentDescription = R.string.home.uiText,
             )
         )
     }
@@ -46,14 +47,14 @@ data class AppBarData(
         object GoBack : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.ArrowBack,
-                contentDescriptionRes = R.string.back_icon,
+                contentDescription = R.string.back_icon.uiText,
             )
         )
 
         object Drawer : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Menu,
-                contentDescriptionRes = R.string.menu,
+                contentDescription = R.string.menu.uiText,
             )
         )
     }
