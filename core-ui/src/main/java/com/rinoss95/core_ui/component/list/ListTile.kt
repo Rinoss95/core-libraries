@@ -84,7 +84,7 @@ fun ListTile(
 
 @Preview(showBackground = true)
 @Composable
-fun ListTilePreview() {
+private fun ListTilePreview() {
     ListTile(
         text = "ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ",
         image = {

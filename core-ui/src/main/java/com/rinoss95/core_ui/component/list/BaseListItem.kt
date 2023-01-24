@@ -86,7 +86,7 @@ fun BaseListItem(
 
 @Preview
 @Composable
-fun BaseListItemPreview() {
+private fun BaseListItemPreview() {
     BaseListItem(
         headlineText = "Ciao",
         supportingText = "Come",

@@ -160,7 +160,7 @@ fun LabelLarge(
 
 @Preview(showBackground = true)
 @Composable
-fun TextPreview() {
+private fun TextPreview() {
     Column {
         HeadlineSmall("HeadlineSmall")
         HeadlineMedium("HeadlineMedium")

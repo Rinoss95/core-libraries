@@ -71,7 +71,7 @@ fun BaseListItem0(
 
 @Preview(showBackground = true)
 @Composable
-fun BaseListItem0Preview() {
+private fun BaseListItem0Preview() {
     BaseListItem0(
         headLineText = "Brasile",
         supportingText = "Name"

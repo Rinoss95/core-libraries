@@ -46,7 +46,7 @@ fun ExampleItem(
 
 @Composable
 @Preview(showBackground = true)
-fun BaseListItemPage() {
+private fun BaseListItemPage() {
     Column {
         ExampleItem()
 

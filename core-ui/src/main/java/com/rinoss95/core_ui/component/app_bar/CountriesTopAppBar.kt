@@ -159,7 +159,7 @@ fun CountriesTopAppBar(
 
 @Preview(showBackground = true)
 @Composable
-fun CountriesTopAppBarPreview() {
+private fun CountriesTopAppBarPreview() {
     CountriesTopAppBar(
         data = AppBarData(
             "All Countries".uiText,
@@ -174,7 +174,7 @@ fun CountriesTopAppBarPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun CountriesTopAppBarSearchPreview() {
+private fun CountriesTopAppBarSearchPreview() {
     CountriesTopAppBar(
         data = AppBarData(
             "All Countries".uiText,
