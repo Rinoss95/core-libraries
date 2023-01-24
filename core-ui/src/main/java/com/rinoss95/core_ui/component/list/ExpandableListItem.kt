@@ -28,8 +28,8 @@ import com.rinoss95.core_ui.model.ImageData
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun ExpandableListItem(
-    modifier: Modifier = Modifier,
     isExpanded: Boolean,
+    modifier: Modifier = Modifier,
     headlineText: String = "",
     supportingText: String = "",
     hasDivider: Boolean = false,
