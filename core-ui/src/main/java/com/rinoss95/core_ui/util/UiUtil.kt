@@ -49,6 +49,7 @@ fun UiText.isNotBlank(): Boolean {
     }
 }
 
+fun @receiver:StringRes Int.uiText(count: Int): UiText = UiText.Resource(this, count)
 
 inline val @receiver:StringRes Int.uiText: UiText get() = UiText.Resource(this)
 
