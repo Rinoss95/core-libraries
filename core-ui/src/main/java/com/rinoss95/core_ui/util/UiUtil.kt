@@ -63,6 +63,6 @@ fun UiText.isNotBlank(): Boolean {
 
 inline val @receiver:StringRes Int.uiText: UiText get() = UiText.Resource(this)
 
-fun @receiver:PluralsRes Int.uiText(count: Int): UiText = UiText.Resource(this)
+fun @receiver:PluralsRes Int.uiText(count: Int): UiText = UiText.Plural(this, count)
 
 inline val String.uiText: UiText get() = UiText.Plain(this)
