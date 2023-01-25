@@ -60,11 +60,13 @@ fun TitleSmall(
 fun TitleMedium(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.titleMedium,
+        color = color,
     )
 }
 
