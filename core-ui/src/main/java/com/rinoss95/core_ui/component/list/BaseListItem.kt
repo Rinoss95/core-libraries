@@ -1,29 +1,24 @@
 package com.rinoss95.core_ui.component.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.*
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.component.ImageComponent
+import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
 import com.rinoss95.core_ui.component.text.BodyLarge
 import com.rinoss95.core_ui.component.text.BodyMedium
 import com.rinoss95.core_ui.component.text.LabelSmall
 import com.rinoss95.core_ui.model.ImageData
-import com.rinoss95.core_ui.R
-import com.rinoss95.core_ui.component.text.TitleMedium
 import com.rinoss95.core_ui.util.uiText
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,18 +62,11 @@ fun BaseListItem(
 
             leadingContent = {
                 if (leadingAvatarText.isNotBlank()) {
-                    Box(
-                        modifier = Modifier
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(color = MaterialTheme.colorScheme.primaryContainer),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        TitleMedium(
-                            text = leadingAvatarText,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
+                    TextAvatar(
+                        avatarText = leadingAvatarText,
+                        backgroundColor = MaterialTheme.colorScheme.primaryContainer,
+                        textColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
 
                 if (leadingIcon != null) {
