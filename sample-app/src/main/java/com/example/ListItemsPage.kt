@@ -17,62 +17,66 @@ import com.rinoss95.core_ui.util.uiText
 
 @Composable
 fun ListItemsPage() {
-    TitleLarge(text = "List Items")
+    Column(
+        Modifier.padding(bottom = 16.dp),
+    ) {
+        TitleLarge(text = "List Items")
 
-    Box(modifier = Modifier.padding(top = 24.dp))
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        trailingIcon = ImageData.IconImageData(
-            Icons.Filled.KeyboardArrowRight,
-            R.string.expand_content.uiText,
-        ),
-        hasDivider = true,
-    )
+        BaseListItem(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            trailingIcon = ImageData.IconImageData(
+                Icons.Filled.KeyboardArrowRight,
+                R.string.expand_content.uiText,
+            ),
+            hasDivider = true,
+        )
 
-    Box(modifier = Modifier.padding(top = 24.dp))
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        leadingIcon = ImageData.IconImageData(
-            Icons.Filled.KeyboardArrowRight,
-            R.string.expand_content.uiText,
-        ),
-        hasDivider = true,
-    )
+        BaseListItem(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            leadingIcon = ImageData.IconImageData(
+                Icons.Filled.KeyboardArrowRight,
+                R.string.expand_content.uiText,
+            ),
+            hasDivider = true,
+        )
 
-    Box(modifier = Modifier.padding(top = 24.dp))
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        leadingAvatarText = "A",
-        hasDivider = true,
-    )
+        BaseListItem(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            leadingAvatarText = "A",
+            hasDivider = true,
+        )
 
-    Box(modifier = Modifier.padding(top = 24.dp))
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-    var isExpanded by remember {
-        mutableStateOf(false)
-    }
+        var isExpanded by remember {
+            mutableStateOf(false)
+        }
 
-    ExpandableListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        hasDivider = true,
-        isExpanded = isExpanded,
-        onClick = {
-            isExpanded = !isExpanded
-        }) {
-        Column {
-            for (i in 1 until 3) {
-                BaseListItem(
-                    headlineText = "Headline Text",
-                    supportingText = "Supporting Text",
-                    hasDivider = true,
-                )
+        ExpandableListItem(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            hasDivider = true,
+            isExpanded = isExpanded,
+            onClick = {
+                isExpanded = !isExpanded
+            }) {
+            Column {
+                for (i in 1 until 3) {
+                    BaseListItem(
+                        headlineText = "Headline Text",
+                        supportingText = "Supporting Text",
+                        hasDivider = true,
+                    )
+                }
             }
         }
     }
