@@ -16,12 +16,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ElevatedContentCard(
+    modifier: Modifier = Modifier,
     headerTitle: String = "",
     headerSubtitle: String = "",
     headerAvatarText: String = "",
     onIconClick: (() -> Unit)? = null,
     iconContent: (@Composable () -> Unit)? = null,
-    imageContent: @Composable () -> Unit,
     bodyTextTitle: String = "",
     bodyTextSubtitle: String = "",
     bodyTextContent: String = "",
@@ -29,8 +29,9 @@ fun ElevatedContentCard(
     secondaryButtonText: String = "",
     onPrimaryButtonClick: (() -> Unit)? = null,
     onSecondaryButtonClick: (() -> Unit)? = null,
+    imageContent: @Composable () -> Unit,
 ) {
-    ElevatedCard {
+    ElevatedCard(modifier) {
         this.ContentCardFields(
             headerTitle = headerTitle,
             headerSubtitle = headerSubtitle,
