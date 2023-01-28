@@ -61,45 +61,56 @@ private fun Header(
     onIconClick: (() -> Unit)?,
     iconContent: (@Composable () -> Unit)?,
 ) {
-    Box(
-        modifier = Modifier.padding(
-            start = 16.dp,
-            top = 12.dp,
-            end = 4.dp,
-            bottom = 12.dp,
-        )
+    val hasAvatar = headerAvatarText.isNotBlank()
+    val hasHeaderTitle = headerTitle.isNotBlank()
+    val hasHeaderSubtitle = headerSubtitle.isNotBlank()
+    val hasIconButton = onIconClick != null && iconContent != null;
+
+    if (hasAvatar ||
+        hasHeaderTitle ||
+        hasHeaderSubtitle ||
+        hasIconButton
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+        Box(
+            modifier = Modifier.padding(
+                start = 16.dp,
+                top = 12.dp,
+                end = 4.dp,
+                bottom = 12.dp,
+            )
         ) {
-            if (headerAvatarText.isNotBlank()) {
-                TextAvatar(
-                    headerAvatarText,
-                    MaterialTheme.colorScheme.primary,
-                    MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.padding(end = 16.dp),
-                )
-            }
-
-            Column(
-                modifier = Modifier.weight(1f),
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                if (headerTitle.isNotBlank()) {
-                    TitleMedium(text = headerTitle)
+                if (hasAvatar) {
+                    TextAvatar(
+                        headerAvatarText,
+                        MaterialTheme.colorScheme.primary,
+                        MaterialTheme.colorScheme.surface,
+                        modifier = Modifier.padding(end = 16.dp),
+                    )
                 }
 
-                if (headerSubtitle.isNotBlank()) {
-                    BodyMedium(text = headerSubtitle)
-                }
-            }
+                Column(
+                    modifier = Modifier.weight(1f),
+                ) {
+                    if (hasHeaderTitle) {
+                        TitleMedium(text = headerTitle)
+                    }
 
-            if (onIconClick != null && iconContent != null) {
-                IconButton(
-                    modifier = Modifier.size(48.dp),
-                    onClick = onIconClick,
-                    content = iconContent,
-                )
+                    if (hasHeaderSubtitle) {
+                        BodyMedium(text = headerSubtitle)
+                    }
+                }
+
+                if (hasIconButton) {
+                    IconButton(
+                        modifier = Modifier.size(48.dp),
+                        onClick = onIconClick!!,
+                        content = iconContent!!,
+                    )
+                }
             }
         }
     }
@@ -129,48 +140,59 @@ private fun BodyTextContent(
     onPrimaryButtonClick: (() -> Unit)?,
     onSecondaryButtonClick: (() -> Unit)?,
 ) {
-    Box(
-        modifier = Modifier.padding(16.dp),
+    val hasBodyTextTitle = bodyTextTitle.isNotBlank()
+    val hasBodyTextSubtitle = bodyTextSubtitle.isNotBlank()
+    val hasBodyTextContent = bodyTextContent.isNotBlank()
+    val hasPrimaryButton = secondaryButtonText.isNotBlank() && onPrimaryButtonClick != null
+    val hasSecondaryButton = secondaryButtonText.isNotBlank() && onSecondaryButtonClick != null
+
+    if (
+        hasBodyTextTitle ||
+        hasBodyTextSubtitle ||
+        hasBodyTextContent ||
+        hasPrimaryButton ||
+        hasSecondaryButton
     ) {
-        Column {
-            if (bodyTextTitle.isNotBlank()) {
-                BodyLarge(text = bodyTextTitle)
-            }
-            if (bodyTextSubtitle.isNotBlank()) {
-                BodyMedium(text = bodyTextSubtitle)
-            }
+        Box(
+            modifier = Modifier.padding(16.dp),
+        ) {
+            Column {
+                if (hasBodyTextTitle) {
+                    BodyLarge(text = bodyTextTitle)
+                }
+                if (hasBodyTextSubtitle) {
+                    BodyMedium(text = bodyTextSubtitle)
+                }
 
-            if (bodyTextContent.isNotBlank()) {
-                BodyMedium(
-                    modifier = Modifier.padding(top = 32.dp),
-                    text = bodyTextContent,
-                )
-            }
+                if (hasBodyTextContent) {
+                    BodyMedium(
+                        modifier = Modifier.padding(top = 32.dp),
+                        text = bodyTextContent,
+                    )
+                }
 
-            val hasPrimaryButton = secondaryButtonText.isNotBlank() && onPrimaryButtonClick != null
-            val hasSecondaryButton =
-                secondaryButtonText.isNotBlank() && onSecondaryButtonClick != null
-            if (hasPrimaryButton or hasSecondaryButton) {
-                Row(
-                    modifier = Modifier
-                        .padding(top = 32.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
-                ) {
-                    if (hasSecondaryButton) {
-                        OutlinedButton(
-                            modifier = Modifier.padding(end = 8.dp),
-                            onClick = onSecondaryButtonClick!!,
-                        ) {
-                            LabelLarge(text = secondaryButtonText)
+                if (hasPrimaryButton or hasSecondaryButton) {
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 32.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.End,
+                    ) {
+                        if (hasSecondaryButton) {
+                            OutlinedButton(
+                                modifier = Modifier.padding(end = 8.dp),
+                                onClick = onSecondaryButtonClick!!,
+                            ) {
+                                LabelLarge(text = secondaryButtonText)
+                            }
                         }
-                    }
 
-                    if (hasPrimaryButton) {
-                        Button(
-                            onClick = onPrimaryButtonClick!!,
-                        ) {
-                            LabelLarge(text = primaryButtonText)
+                        if (hasPrimaryButton) {
+                            Button(
+                                onClick = onPrimaryButtonClick!!,
+                            ) {
+                                LabelLarge(text = primaryButtonText)
+                            }
                         }
                     }
                 }

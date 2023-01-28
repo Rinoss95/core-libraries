@@ -11,6 +11,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.card.ContentCard
 import com.rinoss95.core_ui.component.card.ElevatedContentCard
@@ -153,5 +154,60 @@ fun CardsPage() {
             onPrimaryButtonClick = { },
             onSecondaryButtonClick = { },
         )
+
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        TitleLarge(text = "Two ContentCards in a Row")
+
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        ContentCardsRow()
     }
+}
+
+@Composable
+fun ContentCardsRow() {
+    BoxWithConstraints {
+        val horizontal = 16.dp
+
+        val size = (maxWidth - horizontal) / 2
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            ContentCard(
+                imageContent = {
+                    Box(
+                        modifier = Modifier
+                            .size(size)
+                            .background(color = Color.Blue),
+                    )
+                }
+            )
+
+            ContentCard(
+                imageContent = {
+                    Box(
+                        modifier = Modifier
+                            .size(size)
+                            .background(color = Color.Green),
+                    )
+                }
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CardsPagePreview() {
+    CardsPage()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ContentCardsRowPreview() {
+    ContentCardsRow()
 }
