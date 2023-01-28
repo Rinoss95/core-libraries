@@ -16,12 +16,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ContentCard(
+    modifier: Modifier = Modifier,
     headerTitle: String = "",
     headerSubtitle: String = "",
     headerAvatarText: String = "",
     onIconClick: (() -> Unit)? = null,
     iconContent: (@Composable () -> Unit)? = null,
-    imageContent: @Composable () -> Unit,
     bodyTextTitle: String = "",
     bodyTextSubtitle: String = "",
     bodyTextContent: String = "",
@@ -29,8 +29,9 @@ fun ContentCard(
     secondaryButtonText: String = "",
     onPrimaryButtonClick: (() -> Unit)? = null,
     onSecondaryButtonClick: (() -> Unit)? = null,
+    imageContent: @Composable () -> Unit,
 ) {
-    Card {
+    Card(modifier) {
         this.ContentCardFields(
             headerTitle = headerTitle,
             headerSubtitle = headerSubtitle,
@@ -79,4 +80,17 @@ private fun ContentCardPreview() {
         onPrimaryButtonClick = { },
         onSecondaryButtonClick = { },
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun EmptyContentCardPreview() {
+    ContentCard {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(188.dp)
+                .background(color = Color.Red),
+        )
+    }
 }
