@@ -32,7 +32,7 @@ fun ContentCard(
     imageContent: @Composable () -> Unit,
 ) {
     Card(modifier) {
-        this.ContentCardFields(
+        ContentCardsFilling(
             headerTitle = headerTitle,
             headerSubtitle = headerSubtitle,
             headerAvatarText = headerAvatarText,

@@ -32,7 +32,7 @@ fun OutlinedContentCard(
     imageContent: @Composable () -> Unit,
 ) {
     OutlinedCard(modifier) {
-        this.ContentCardFields(
+        ContentCardsFilling(
             headerTitle = headerTitle,
             headerSubtitle = headerSubtitle,
             headerAvatarText = headerAvatarText,

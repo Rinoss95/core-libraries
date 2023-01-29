@@ -1,7 +1,6 @@
 package com.rinoss95.core_ui.component.card
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
@@ -17,7 +16,7 @@ import com.rinoss95.core_ui.component.text.LabelLarge
 import com.rinoss95.core_ui.component.text.TitleMedium
 
 @Composable
-internal fun ColumnScope.ContentCardFields(
+internal fun ContentCardsFilling(
     headerTitle: String,
     headerSubtitle: String,
     headerAvatarText: String,
@@ -32,25 +31,27 @@ internal fun ColumnScope.ContentCardFields(
     onPrimaryButtonClick: (() -> Unit)?,
     onSecondaryButtonClick: (() -> Unit)?,
 ) {
-    Header(
-        headerTitle = headerTitle,
-        headerSubtitle = headerSubtitle,
-        headerAvatarText = headerAvatarText,
-        onIconClick = onIconClick,
-        iconContent = iconContent,
-    )
+    Column {
+        Header(
+            headerTitle = headerTitle,
+            headerSubtitle = headerSubtitle,
+            headerAvatarText = headerAvatarText,
+            onIconClick = onIconClick,
+            iconContent = iconContent,
+        )
 
-    ImageContent(imageContent)
+        ImageContent(imageContent)
 
-    BodyTextContent(
-        bodyTextTitle = bodyTextTitle,
-        bodyTextSubtitle = bodyTextSubtitle,
-        bodyTextContent = bodyTextContent,
-        primaryButtonText = primaryButtonText,
-        secondaryButtonText = secondaryButtonText,
-        onPrimaryButtonClick = onPrimaryButtonClick,
-        onSecondaryButtonClick = onSecondaryButtonClick,
-    )
+        BodyTextContent(
+            bodyTextTitle = bodyTextTitle,
+            bodyTextSubtitle = bodyTextSubtitle,
+            bodyTextContent = bodyTextContent,
+            primaryButtonText = primaryButtonText,
+            secondaryButtonText = secondaryButtonText,
+            onPrimaryButtonClick = onPrimaryButtonClick,
+            onSecondaryButtonClick = onSecondaryButtonClick,
+        )
+    }
 }
 
 @Composable
@@ -64,7 +65,7 @@ private fun Header(
     val hasAvatar = headerAvatarText.isNotBlank()
     val hasHeaderTitle = headerTitle.isNotBlank()
     val hasHeaderSubtitle = headerSubtitle.isNotBlank()
-    val hasIconButton = onIconClick != null && iconContent != null;
+    val hasIconButton = onIconClick != null && iconContent != null
 
     if (hasAvatar ||
         hasHeaderTitle ||
