@@ -120,13 +120,11 @@ private fun Header(
 private fun ImageContent(
     imageContent: @Composable () -> Unit,
 ) {
-    LazyColumn(
+    Box(
         modifier = Modifier
             .heightIn(0.dp, 188.dp)
     ) {
-        item {
-            imageContent()
-        }
+        imageContent()
     }
 }
 
