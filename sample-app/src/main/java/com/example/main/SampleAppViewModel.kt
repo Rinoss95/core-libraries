@@ -8,6 +8,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SampleViewModel @Inject constructor() : ViewModel() {
+class SampleAppViewModel @Inject constructor() : ViewModel() {
     var isDarkMode by mutableStateOf(false)
+
+    init {
+        println("SampleAppViewModel -> isDarkMode = $isDarkMode")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.main.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
@@ -6,8 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.main.model.SampleRoute
+import com.example.main.model.AppRoute
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.sample.R
 import kotlinx.coroutines.CoroutineScope
@@ -15,13 +14,15 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SampleDrawer(
+fun SampleAppDrawer(
     drawerState: DrawerState,
-    navController: NavController,
     uiScope: CoroutineScope,
-    currentRoute: SampleRoute,
-    onClick: (SampleRoute) -> Unit,
+    currentRoute: AppRoute,
+    onClick: (AppRoute) -> Unit,
     gesturesEnabled: Boolean = true,
+    routes: List<AppRoute> = AppRoute.values().filter {
+        it != AppRoute.SettingsPage
+    },
     content: @Composable () -> Unit,
 ) {
     ModalNavigationDrawer(
@@ -38,7 +39,7 @@ fun SampleDrawer(
                     ),
                 )
 
-                SampleRoute.values().forEach { route ->
+                routes.forEach { route ->
                     NavigationDrawerItem(
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
                         selected = (route == currentRoute),
@@ -51,10 +52,6 @@ fun SampleDrawer(
                             }
 
                             onClick(route)
-
-                            navController.navigate(route = route.id) {
-                                popUpTo(0)
-                            }
                         }
                     )
                 }

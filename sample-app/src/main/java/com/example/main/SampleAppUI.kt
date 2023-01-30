@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.main.components.SampleAppBar
-import com.example.main.model.SampleRoute
+import com.example.main.components.SampleAppDrawer
+import com.example.main.components.SampleAppNavHost
+import com.example.main.model.AppRoute
 import com.example.main.theme.MyApplicationTheme
 import kotlinx.coroutines.launch
 
@@ -19,12 +21,12 @@ import kotlinx.coroutines.launch
 @Composable
 @Preview(showBackground = true)
 fun SampleAppUI(
-    viewModel: SampleViewModel = hiltViewModel(),
+    appViewModel: SampleAppViewModel = hiltViewModel(),
 ) {
     val navController = rememberNavController()
 
     var currentRoute by remember {
-        mutableStateOf(SampleRoute.ListPage)
+        mutableStateOf(AppRoute.ListPage)
     }
 
     val uiScope = rememberCoroutineScope()
@@ -32,25 +34,38 @@ fun SampleAppUI(
     val drawerState = rememberDrawerState(DrawerValue.Closed)
 
     MyApplicationTheme(
-        darkTheme = viewModel.isDarkMode,
+        darkTheme = appViewModel.isDarkMode,
     ) {
-        SampleDrawer(
+        SampleAppDrawer(
             drawerState = drawerState,
             gesturesEnabled = drawerState.isOpen,
-            navController = navController,
             uiScope = uiScope,
             currentRoute = currentRoute,
             onClick = { newRoute ->
                 currentRoute = newRoute
+
+                navController.navigate(route = newRoute.id) {
+                    popUpTo(0)
+                }
             },
         ) {
             Scaffold(
                 topBar = {
-                    SampleAppBar(currentRoute) {
-                        uiScope.launch {
-                            drawerState.open()
+                    SampleAppBar(
+                        currentRoute,
+                        onMenuClick = {
+                            uiScope.launch {
+                                drawerState.open()
+                            }
+                        },
+                        onSettingsClick = {
+                            currentRoute = AppRoute.SettingsPage
+
+                            navController.navigate(AppRoute.SettingsPage.id) {
+                                popUpTo(0)
+                            }
                         }
-                    }
+                    )
                 }
             ) { padding ->
                 Column(
@@ -59,7 +74,13 @@ fun SampleAppUI(
                         .padding(padding)
                         .padding(horizontal = 16.dp)
                 ) {
-                    SampleNavHost(navController)
+                    SampleAppNavHost(
+                        navController,
+                        isDarkMode = appViewModel.isDarkMode,
+                        onDarkModeChange = {
+                            appViewModel.isDarkMode = it
+                        }
+                    )
                 }
             }
         }
