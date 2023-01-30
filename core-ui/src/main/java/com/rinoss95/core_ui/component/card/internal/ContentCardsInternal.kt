@@ -1,4 +1,4 @@
-package com.rinoss95.core_ui.component.card
+package com.rinoss95.core_ui.component.card.internal
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
