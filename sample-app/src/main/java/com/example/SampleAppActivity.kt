@@ -134,14 +134,14 @@ fun SampleDrawer(
                     Text(route.displayName)
                 },
                 onClick = {
+                    uiScope.launch {
+                        drawerState.close()
+                    }
+
                     onClick(route)
 
                     navController.navigate(route = route.id) {
                         popUpTo(0)
-                    }
-
-                    uiScope.launch {
-                        drawerState.close()
                     }
                 }
             )

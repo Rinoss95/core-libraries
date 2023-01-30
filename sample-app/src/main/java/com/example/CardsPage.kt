@@ -15,9 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.ImageComponent
-import com.rinoss95.core_ui.component.card.ContentCard
-import com.rinoss95.core_ui.component.card.ElevatedContentCard
-import com.rinoss95.core_ui.component.card.OutlinedContentCard
+import com.rinoss95.core_ui.component.card.*
 import com.rinoss95.core_ui.component.text.HeadlineLarge
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.model.ImageData
@@ -25,7 +23,7 @@ import com.rinoss95.core_ui.sample.R
 import com.rinoss95.core_ui.util.uiText
 
 @Composable
-fun CardsPage() {
+internal fun CardsPage() {
     LazyColumn {
         item {
             Column(
@@ -60,165 +58,199 @@ fun CardsPage() {
                     )
                 }
 
-                Box(modifier = Modifier.padding(top = 24.dp))
+                ContentCardExample()
 
-                TitleLarge(text = "ContentCard")
+                ElevatedContentCardExample()
 
-                Box(modifier = Modifier.padding(top = 24.dp))
+                OutlinedContentCardExample()
 
-                ContentCard(
-                    headerTitle = "Header",
-                    headerSubtitle = "Subhead",
-                    headerAvatarText = "A",
-                    onIconClick = {},
-                    iconContent = {
-                        Icon(
-                            Icons.Filled.MoreVert,
-                            "",
-                        )
-                    },
-                    imageContent = {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(188.dp)
-                                .background(color = Color.Red),
-                        )
-                    },
-                    bodyTextTitle = "Title",
-                    bodyTextSubtitle = "Subhead",
-                    bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-                    primaryButtonText = "Primary",
-                    secondaryButtonText = "Secondary",
-                    onPrimaryButtonClick = { },
-                    onSecondaryButtonClick = { },
-                )
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                TitleLarge(text = "OutlinedContentCard")
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                OutlinedContentCard(
-                    headerTitle = "Header",
-                    headerSubtitle = "Subhead",
-                    headerAvatarText = "A",
-                    onIconClick = {},
-                    iconContent = {
-                        Icon(
-                            Icons.Filled.MoreVert,
-                            "",
-                        )
-                    },
-                    imageContent = {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(188.dp)
-                                .background(color = Color.Red),
-                        )
-                    },
-                    bodyTextTitle = "Title",
-                    bodyTextSubtitle = "Subhead",
-                    bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-                    primaryButtonText = "Primary",
-                    secondaryButtonText = "Secondary",
-                    onPrimaryButtonClick = { },
-                    onSecondaryButtonClick = { },
-                )
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                TitleLarge(text = "ElevatedContentCard")
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                ElevatedContentCard(
-                    headerTitle = "Header",
-                    headerSubtitle = "Subhead",
-                    headerAvatarText = "A",
-                    onIconClick = {},
-                    iconContent = {
-                        Icon(
-                            Icons.Filled.MoreVert,
-                            "",
-                        )
-                    },
-                    imageContent = {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(188.dp)
-                                .background(color = Color.Red),
-                        )
-                    },
-                    bodyTextTitle = "Title",
-                    bodyTextSubtitle = "Subhead",
-                    bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-                    primaryButtonText = "Primary",
-                    secondaryButtonText = "Secondary",
-                    onPrimaryButtonClick = { },
-                    onSecondaryButtonClick = { },
-                )
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                TitleLarge(text = "Two ContentCards in a Row")
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                ContentCardsRow()
-
-                Box(modifier = Modifier.padding(top = 24.dp))
-
-                TitleLarge(text = "ContentCard with image")
-
-                Box(modifier = Modifier.padding(top = 24.dp))
+                TwoContentCardsInARow()
 
                 ContentCardWithImage()
+
+                ListItemCardExample()
+
+                ElevatedListItemCardExample()
+
+                OutlinedListItemCardExample()
             }
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun ContentCardsRow() {
-    BoxWithConstraints {
-        val horizontal = 16.dp
+private fun ContentCardExample() {
+    Column {
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-        val size = (maxWidth - horizontal) / 2
+        TitleLarge(text = "ContentCard")
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            ContentCard(
-                imageContent = {
-                    Box(
-                        modifier = Modifier
-                            .size(size)
-                            .background(color = Color.Blue),
-                    )
-                }
-            )
+        Box(modifier = Modifier.padding(top = 24.dp))
 
-            ContentCard(
-                imageContent = {
-                    Box(
-                        modifier = Modifier
-                            .size(size)
-                            .background(color = Color.Green),
-                    )
-                }
-            )
+        ContentCard(
+            headerTitle = "Header",
+            headerSubtitle = "Subhead",
+            headerAvatarText = "A",
+            onIconClick = {},
+            iconContent = {
+                Icon(
+                    Icons.Filled.MoreVert,
+                    "",
+                )
+            },
+            imageContent = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(188.dp)
+                        .background(color = Color.Red),
+                )
+            },
+            bodyTextTitle = "Title",
+            bodyTextSubtitle = "Subhead",
+            bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+            primaryButtonText = "Primary",
+            secondaryButtonText = "Secondary",
+            onPrimaryButtonClick = { },
+            onSecondaryButtonClick = { },
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ElevatedContentCardExample() {
+    Column {
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        TitleLarge(text = "ElevatedContentCard")
+
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        ElevatedContentCard(
+            headerTitle = "Header",
+            headerSubtitle = "Subhead",
+            headerAvatarText = "A",
+            onIconClick = {},
+            iconContent = {
+                Icon(
+                    Icons.Filled.MoreVert,
+                    "",
+                )
+            },
+            imageContent = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(188.dp)
+                        .background(color = Color.Red),
+                )
+            },
+            bodyTextTitle = "Title",
+            bodyTextSubtitle = "Subhead",
+            bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+            primaryButtonText = "Primary",
+            secondaryButtonText = "Secondary",
+            onPrimaryButtonClick = { },
+            onSecondaryButtonClick = { },
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun OutlinedContentCardExample() {
+    Column {
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        TitleLarge(text = "OutlinedContentCard")
+
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        OutlinedContentCard(
+            headerTitle = "Header",
+            headerSubtitle = "Subhead",
+            headerAvatarText = "A",
+            onIconClick = {},
+            iconContent = {
+                Icon(
+                    Icons.Filled.MoreVert,
+                    "",
+                )
+            },
+            imageContent = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(188.dp)
+                        .background(color = Color.Red),
+                )
+            },
+            bodyTextTitle = "Title",
+            bodyTextSubtitle = "Subhead",
+            bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+            primaryButtonText = "Primary",
+            secondaryButtonText = "Secondary",
+            onPrimaryButtonClick = { },
+            onSecondaryButtonClick = { },
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TwoContentCardsInARow() {
+    Column {
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        TitleLarge(text = "Two ContentCard in a Row")
+
+        Box(modifier = Modifier.padding(top = 24.dp))
+
+        BoxWithConstraints {
+            val horizontal = 16.dp
+
+            val size = (maxWidth - horizontal) / 2
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                ContentCard(
+                    imageContent = {
+                        Box(
+                            modifier = Modifier
+                                .size(size)
+                                .background(color = Color.Blue),
+                        )
+                    }
+                )
+
+                ContentCard(
+                    imageContent = {
+                        Box(
+                            modifier = Modifier
+                                .size(size)
+                                .background(color = Color.Green),
+                        )
+                    }
+                )
+            }
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun ContentCardWithImage() {
+private fun ContentCardWithImage() {
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    TitleLarge(text = "ContentCard with image")
+
+    Box(modifier = Modifier.padding(top = 24.dp))
+
     BoxWithConstraints {
         val maxWidth = this.maxWidth
 
@@ -255,18 +287,72 @@ fun ContentCardWithImage() {
 
 @Preview(showBackground = true)
 @Composable
-fun CardsPagePreview() {
-    CardsPage()
+private fun ListItemCardExample() {
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    TitleLarge(text = "ListItemCard")
+
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    ListItemCard(
+        avatarText = "A",
+        headerTitle = "Header",
+        headerSubtitle = "Subtitle",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(520.dp)
+                .heightIn(120.dp),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ContentCardsRowPreview() {
-    ContentCardsRow()
+private fun ElevatedListItemCardExample() {
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    TitleLarge(text = "ElevatedListItemCard")
+
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    ElevatedListItemCard(
+        avatarText = "A",
+        headerTitle = "Header",
+        headerSubtitle = "Subtitle",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(520.dp)
+                .heightIn(120.dp),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ContentCardWithImagePreview() {
-    ContentCardWithImage()
+private fun OutlinedListItemCardExample() {
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    TitleLarge(text = "OutlinedListItemCard")
+
+    Box(modifier = Modifier.padding(top = 24.dp))
+
+    OutlinedListItemCard(
+        avatarText = "A",
+        headerTitle = "Header",
+        headerSubtitle = "Subtitle",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(520.dp)
+                .heightIn(120.dp),
+        )
+    }
 }
