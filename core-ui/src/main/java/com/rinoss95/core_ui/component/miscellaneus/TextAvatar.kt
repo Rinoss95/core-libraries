@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.text.TitleMedium
 
@@ -20,18 +21,21 @@ fun TextAvatar(
     backgroundColor: Color,
     textColor: Color,
     modifier: Modifier = Modifier,
+    avatarSize: Dp = 40.dp,
 ) {
-    Box(
-        modifier = modifier
-            .size(40.dp)
-            .clip(CircleShape)
-            .background(color = backgroundColor),
-        contentAlignment = Alignment.Center
-    ) {
-        TitleMedium(
-            text = avatarText,
-            color = textColor,
-        )
+    Box(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .size(avatarSize)
+                .clip(CircleShape)
+                .background(color = backgroundColor),
+            contentAlignment = Alignment.Center
+        ) {
+            TitleMedium(
+                text = avatarText,
+                color = textColor,
+            )
+        }
     }
 }
 
