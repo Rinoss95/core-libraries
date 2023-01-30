@@ -29,7 +29,7 @@
         android:theme="@style/Theme.CountriesApp"
         tools:targetApi="31">
         <activity
-            android:name="com.example.SampleAppActivity"
+            android:name="com.example.main.SampleAppActivity"
             android:exported="true"
             android:theme="@style/Theme.CountriesApp">
             <intent-filter>

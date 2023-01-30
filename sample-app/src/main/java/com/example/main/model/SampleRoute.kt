@@ -1,4 +1,4 @@
-package com.example
+package com.example.main.model
 
 enum class SampleRoute(
     val id: String,

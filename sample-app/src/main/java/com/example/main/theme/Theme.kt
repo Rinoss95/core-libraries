@@ -1,4 +1,4 @@
-package com.example.theme
+package com.example.main.theme
 
 import android.app.Activity
 import android.os.Build

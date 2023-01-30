@@ -1,4 +1,4 @@
-package com.example.theme
+package com.example.main.theme
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
