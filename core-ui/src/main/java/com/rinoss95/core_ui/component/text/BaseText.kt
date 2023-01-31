@@ -12,11 +12,15 @@ import androidx.compose.ui.tooling.preview.Preview
 fun HeadlineSmall(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.headlineSmall,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -24,11 +28,15 @@ fun HeadlineSmall(
 fun HeadlineMedium(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.headlineMedium,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -36,11 +44,15 @@ fun HeadlineMedium(
 fun HeadlineLarge(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.headlineLarge,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -48,11 +60,15 @@ fun HeadlineLarge(
 fun TitleSmall(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.titleSmall,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -61,12 +77,14 @@ fun TitleMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.titleMedium,
         color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -74,11 +92,15 @@ fun TitleMedium(
 fun TitleLarge(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
-        style = MaterialTheme.typography.titleLarge
+        style = MaterialTheme.typography.titleLarge,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -86,11 +108,15 @@ fun TitleLarge(
 fun BodySmall(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
-        style = MaterialTheme.typography.bodySmall
+        style = MaterialTheme.typography.bodySmall,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -99,12 +125,14 @@ fun BodyMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.bodyMedium,
         color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -113,12 +141,14 @@ fun BodyLarge(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.bodyLarge,
         color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -127,12 +157,14 @@ fun LabelSmall(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.labelSmall,
         color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -140,11 +172,15 @@ fun LabelSmall(
 fun LabelMedium(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.labelMedium,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
@@ -152,11 +188,15 @@ fun LabelMedium(
 fun LabelLarge(
     text: String,
     modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         text,
         modifier = modifier,
         style = MaterialTheme.typography.labelLarge,
+        color = color,
+        maxLines = maxLines,
     )
 }
 
