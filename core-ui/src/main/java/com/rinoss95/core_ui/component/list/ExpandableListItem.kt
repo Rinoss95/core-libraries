@@ -81,7 +81,7 @@ fun ExpandableListItem(
             }
         )
 
-        if (hasDivider && !isExpanded) {
+        if (hasDivider) {
             Divider(
                 modifier = Modifier.padding(
                     start = 16.dp,
