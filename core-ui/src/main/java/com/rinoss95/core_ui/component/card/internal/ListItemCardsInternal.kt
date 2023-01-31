@@ -29,7 +29,7 @@ internal fun ListItemCardsFilling(
     val hasTrailingContent = trailingContent != null
 
     Row(
-        modifier = Modifier.heightIn(min = 80.dp),
+        modifier = Modifier.height(80.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (hasAvatar || hasHeaderTitle || hasHeaderSubtitle) {
@@ -68,10 +68,9 @@ internal fun ListItemCardsFilling(
 
         if (hasTrailingContent) {
             Box(
-                modifier = Modifier.sizeIn(
-                    minWidth = 80.dp,
-                    minHeight = 80.dp,
-                ),
+                modifier = Modifier
+                    .width(80.dp)
+                    .heightIn(max = 80.dp),
                 content = {
                     trailingContent!!()
                 }
