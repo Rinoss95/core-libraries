@@ -13,6 +13,9 @@ import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
 import com.rinoss95.core_ui.component.text.BodyMedium
 import com.rinoss95.core_ui.component.text.TitleMedium
 
+/**
+ * [headerSubtitle] is subjected to the [headerTitle] in order to be shown
+ */
 @Composable
 internal fun ListItemCardsFilling(
     avatarText: String,
@@ -45,16 +48,19 @@ internal fun ListItemCardsFilling(
                     )
                 }
 
-                if (hasHeaderTitle || hasHeaderSubtitle) {
+                if (hasHeaderTitle) {
                     Column(
                         modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         TitleMedium(text = headerTitle)
 
-                        BodyMedium(
-                            modifier = Modifier.padding(top = 4.dp),
-                            text = headerSubtitle,
-                        )
+                        if (hasHeaderSubtitle) {
+                            BodyMedium(
+                                modifier = Modifier.padding(top = 4.dp),
+                                text = headerSubtitle,
+                            )
+                        }
                     }
                 }
             }
@@ -81,6 +87,24 @@ private fun ListItemCardPreview() {
         avatarText = "A",
         headerTitle = "Header",
         headerSubtitle = "Subtitle",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(80.dp)
+                .height(80.dp),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ListItemCardPreview2() {
+    ListItemCardsFilling(
+        avatarText = "A",
+        headerTitle = "Header",
+        headerSubtitle = "",
     ) {
         Box(
             modifier = Modifier
