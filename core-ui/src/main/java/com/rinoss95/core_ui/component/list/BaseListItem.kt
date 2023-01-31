@@ -38,29 +38,31 @@ fun BaseListItem(
         Modifier.clickable(onClick = it)
     } ?: Modifier
 
-    Column(modifier) {
-        ListItem(
-            modifier = Modifier.then(clickable),
+    val headlineTextContent: @Composable () -> Unit = if (headlineText.isNotBlank()) {
+        {
+            BodyLarge(
+                headlineText,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    } else {
+        {}
+    }
 
-            headlineText = {
-                if (headlineText.isNotBlank()) {
-                    BodyLarge(
-                        headlineText,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
-            },
+    val supportingTextContent: (@Composable () -> Unit)? = if (supportingText.isNotBlank()) {
+        {
+            BodyMedium(
+                supportingText,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    } else {
+        null
+    }
 
-            supportingText = {
-                if (supportingText.isNotBlank()) {
-                    BodyMedium(
-                        supportingText,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            },
-
-            leadingContent = {
+    val leadingContent: (@Composable () -> Unit)? =
+        if (leadingAvatarText.isNotBlank() || leadingIcon != null) {
+            {
                 if (leadingAvatarText.isNotBlank()) {
                     TextAvatar(
                         avatarText = leadingAvatarText,
@@ -75,9 +77,14 @@ fun BaseListItem(
                         imageData = leadingIcon
                     )
                 }
-            },
+            }
+        } else {
+            null
+        }
 
-            trailingContent = {
+    val trailingContent: (@Composable () -> Unit)? =
+        if (trailingText.isNotBlank() || trailingIcon != null) {
+            {
                 if (trailingText.isNotBlank()) {
                     LabelSmall(
                         text = trailingText,
@@ -92,6 +99,17 @@ fun BaseListItem(
                     )
                 }
             }
+        } else {
+            null
+        }
+
+    Column(modifier) {
+        ListItem(
+            modifier = Modifier.then(clickable),
+            headlineText = headlineTextContent,
+            supportingText = supportingTextContent,
+            leadingContent = leadingContent,
+            trailingContent = trailingContent,
         )
 
         if (hasDivider) {
