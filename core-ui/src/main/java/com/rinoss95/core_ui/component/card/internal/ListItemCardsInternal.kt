@@ -62,7 +62,10 @@ internal fun ListItemCardsFilling(
 
         if (hasTrailingContent) {
             Box(
-                modifier = Modifier.size(80.dp),
+                modifier = Modifier.sizeIn(
+                    minWidth = 80.dp,
+                    minHeight = 80.dp,
+                ),
                 content = {
                     trailingContent!!()
                 }
@@ -83,8 +86,8 @@ private fun ListItemCardPreview() {
             modifier = Modifier
                 .align(Alignment.Center)
                 .background(color = Color.Red)
-                .width(520.dp)
-                .heightIn(120.dp),
+                .width(80.dp)
+                .height(80.dp),
         )
     }
 }
