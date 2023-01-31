@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.component.list.ExpandableListItem
@@ -16,6 +17,7 @@ import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.sample.R
 import com.rinoss95.core_ui.util.uiText
 
+@Preview(showBackground = true)
 @Composable
 fun ListItemsPage() {
     LazyColumn {
@@ -61,23 +63,24 @@ fun ListItemsPage() {
                 Box(modifier = Modifier.padding(top = 24.dp))
 
                 var isExpanded by remember {
-                    mutableStateOf(false)
+                    mutableStateOf(true)
                 }
 
                 ExpandableListItem(
                     headlineText = "Headline Text",
                     supportingText = "Supporting Text",
-                    hasDivider = true,
+                    hasDivider = isExpanded,
                     isExpanded = isExpanded,
                     onClick = {
                         isExpanded = !isExpanded
                     }) {
                     Column {
-                        for (i in 1 until 3) {
+                        val length = 3
+                        for (i in 1 until length) {
                             BaseListItem(
                                 headlineText = "Headline Text",
                                 supportingText = "Supporting Text",
-                                hasDivider = true,
+                                hasDivider = i == length - 1,
                             )
                         }
                     }
