@@ -56,7 +56,7 @@ internal fun ListItemCardsFilling(
                     ) {
                         TitleMedium(
                             text = headerTitle,
-                            maxLines = 1,
+                            maxLines = if (hasHeaderSubtitle) 1 else 2,
                             overflow = TextOverflow.Ellipsis,
                         )
 
@@ -129,6 +129,24 @@ private fun ListItemCardPreview3() {
         avatarText = "A",
         headerTitle = "Header Header Header Header ",
         headerSubtitle = "Subhead Subhead Subhead Subhead ",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(80.dp)
+                .height(80.dp),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ListItemCardPreview4() {
+    ListItemCardsFilling(
+        avatarText = "A",
+        headerTitle = "Header Header Header Header Header Header Header ",
+        headerSubtitle = "",
     ) {
         Box(
             modifier = Modifier
