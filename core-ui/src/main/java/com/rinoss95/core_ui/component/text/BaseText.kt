@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -13,6 +14,7 @@ fun HeadlineSmall(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -21,6 +23,7 @@ fun HeadlineSmall(
         style = MaterialTheme.typography.headlineSmall,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -29,6 +32,7 @@ fun HeadlineMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -37,6 +41,7 @@ fun HeadlineMedium(
         style = MaterialTheme.typography.headlineMedium,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -45,6 +50,7 @@ fun HeadlineLarge(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -53,6 +59,7 @@ fun HeadlineLarge(
         style = MaterialTheme.typography.headlineLarge,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -61,6 +68,7 @@ fun TitleSmall(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -69,6 +77,7 @@ fun TitleSmall(
         style = MaterialTheme.typography.titleSmall,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -77,6 +86,7 @@ fun TitleMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -85,6 +95,7 @@ fun TitleMedium(
         style = MaterialTheme.typography.titleMedium,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -93,6 +104,7 @@ fun TitleLarge(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -101,6 +113,7 @@ fun TitleLarge(
         style = MaterialTheme.typography.titleLarge,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -109,6 +122,7 @@ fun BodySmall(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -117,6 +131,7 @@ fun BodySmall(
         style = MaterialTheme.typography.bodySmall,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -125,6 +140,7 @@ fun BodyMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -133,6 +149,7 @@ fun BodyMedium(
         style = MaterialTheme.typography.bodyMedium,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -141,6 +158,7 @@ fun BodyLarge(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -149,6 +167,7 @@ fun BodyLarge(
         style = MaterialTheme.typography.bodyLarge,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -157,6 +176,7 @@ fun LabelSmall(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -165,6 +185,7 @@ fun LabelSmall(
         style = MaterialTheme.typography.labelSmall,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -173,6 +194,7 @@ fun LabelMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -181,6 +203,7 @@ fun LabelMedium(
         style = MaterialTheme.typography.labelMedium,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
@@ -189,6 +212,7 @@ fun LabelLarge(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
@@ -197,6 +221,7 @@ fun LabelLarge(
         style = MaterialTheme.typography.labelLarge,
         color = color,
         maxLines = maxLines,
+        overflow = overflow,
     )
 }
 
