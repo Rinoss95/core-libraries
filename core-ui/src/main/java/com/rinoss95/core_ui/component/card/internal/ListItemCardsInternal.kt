@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
@@ -53,12 +54,18 @@ internal fun ListItemCardsFilling(
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.Center,
                     ) {
-                        TitleMedium(text = headerTitle)
+                        TitleMedium(
+                            text = headerTitle,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
 
                         if (hasHeaderSubtitle) {
                             BodyMedium(
                                 modifier = Modifier.padding(top = 4.dp),
                                 text = headerSubtitle,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
                             )
                         }
                     }
@@ -104,6 +111,24 @@ private fun ListItemCardPreview2() {
         avatarText = "A",
         headerTitle = "Header",
         headerSubtitle = "",
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .background(color = Color.Red)
+                .width(80.dp)
+                .height(80.dp),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ListItemCardPreview3() {
+    ListItemCardsFilling(
+        avatarText = "A",
+        headerTitle = "Header Header Header Header ",
+        headerSubtitle = "Subhead Subhead Subhead Subhead ",
     ) {
         Box(
             modifier = Modifier
