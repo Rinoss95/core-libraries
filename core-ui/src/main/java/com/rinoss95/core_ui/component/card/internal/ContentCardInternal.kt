@@ -1,5 +1,6 @@
 package com.rinoss95.core_ui.component.card.internal
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -7,6 +8,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
@@ -73,12 +76,14 @@ private fun Header(
         hasIconButton
     ) {
         Box(
-            modifier = Modifier.padding(
-                start = 16.dp,
-                top = 12.dp,
-                end = 4.dp,
-                bottom = 12.dp,
-            )
+            modifier = Modifier
+                .height(72.dp)
+                .padding(
+                    start = 16.dp,
+                    top = 12.dp,
+                    end = 4.dp,
+                    bottom = 12.dp,
+                )
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -93,15 +98,23 @@ private fun Header(
                     )
                 }
 
-                Column(
-                    modifier = Modifier.weight(1f),
-                ) {
-                    if (hasHeaderTitle) {
-                        TitleMedium(text = headerTitle)
-                    }
+                if (hasHeaderTitle) {
+                    Column(
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        TitleMedium(
+                            text = headerTitle,
+                            maxLines = if (hasHeaderSubtitle) 1 else 2,
+                            overflow = TextOverflow.Ellipsis,
+                        )
 
-                    if (hasHeaderSubtitle) {
-                        BodyMedium(text = headerSubtitle)
+                        if (hasHeaderSubtitle) {
+                            BodyMedium(
+                                text = headerSubtitle,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        }
                     }
                 }
 
@@ -122,8 +135,7 @@ private fun ImageContent(
     imageContent: @Composable () -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .heightIn(0.dp, 188.dp)
+        modifier = Modifier.heightIn(max = 188.dp)
     ) {
         imageContent()
     }
@@ -153,7 +165,9 @@ private fun BodyTextContent(
         hasSecondaryButton
     ) {
         Box(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .heightIn(min = 220.dp),
         ) {
             Column {
                 if (hasBodyTextTitle) {
@@ -202,8 +216,8 @@ private fun BodyTextContent(
 
 @Preview(showBackground = true)
 @Composable
-private fun HeaderPreview() {
-    Header(
+private fun ContentCardPreview() {
+    ContentCardInternal(
         headerTitle = "Header",
         headerSubtitle = "Subhead",
         headerAvatarText = "A",
@@ -214,5 +228,20 @@ private fun HeaderPreview() {
                 "",
             )
         },
+        imageContent = {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(20.dp)
+                    .background(color = Color.Red),
+            )
+        },
+        bodyTextTitle = "Title",
+        bodyTextSubtitle = "Subhead",
+        bodyTextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+        primaryButtonText = "Primary",
+        secondaryButtonText = "Secondary",
+        onPrimaryButtonClick = { },
+        onSecondaryButtonClick = { },
     )
 }
