@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rinoss95.core_ui.component.card.internal.ContentCardsFilling
+import com.rinoss95.core_ui.component.card.internal.ContentCardInternal
 
 @Composable
 fun OutlinedContentCard(
@@ -33,7 +33,7 @@ fun OutlinedContentCard(
     imageContent: @Composable () -> Unit,
 ) {
     OutlinedCard(modifier) {
-        ContentCardsFilling(
+        ContentCardInternal(
             headerTitle = headerTitle,
             headerSubtitle = headerSubtitle,
             headerAvatarText = headerAvatarText,

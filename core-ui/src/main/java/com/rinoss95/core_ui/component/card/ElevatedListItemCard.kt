@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.rinoss95.core_ui.component.card.internal.ListItemCardsFilling
+import com.rinoss95.core_ui.component.card.internal.ListItemCardInternal
 
 @Composable
 fun ElevatedListItemCard(
@@ -15,7 +15,7 @@ fun ElevatedListItemCard(
     trailingContent: (@Composable BoxScope.() -> Unit)? = null,
 ) {
     ElevatedCard(modifier) {
-        ListItemCardsFilling(
+        ListItemCardInternal(
             avatarText,
             headerTitle,
             headerSubtitle,

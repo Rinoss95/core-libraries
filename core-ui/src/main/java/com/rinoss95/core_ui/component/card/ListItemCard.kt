@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.rinoss95.core_ui.component.card.internal.ListItemCardsFilling
+import com.rinoss95.core_ui.component.card.internal.ListItemCardInternal
 
 @Composable
 fun ListItemCard(
@@ -15,7 +15,7 @@ fun ListItemCard(
     trailingContent: (@Composable BoxScope.() -> Unit)? = null,
 ) {
     Card(modifier) {
-        ListItemCardsFilling(
+        ListItemCardInternal(
             avatarText,
             headerTitle,
             headerSubtitle,

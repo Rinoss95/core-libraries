@@ -16,7 +16,7 @@ import com.rinoss95.core_ui.component.text.LabelLarge
 import com.rinoss95.core_ui.component.text.TitleMedium
 
 @Composable
-internal fun ContentCardsFilling(
+internal fun ContentCardInternal(
     headerTitle: String,
     headerSubtitle: String,
     headerAvatarText: String,

@@ -18,7 +18,7 @@ import com.rinoss95.core_ui.component.text.TitleMedium
  * [headerSubtitle] is subjected to the [headerTitle] in order to be shown
  */
 @Composable
-internal fun ListItemCardsFilling(
+internal fun ListItemCardInternal(
     avatarText: String,
     headerTitle: String,
     headerSubtitle: String,
@@ -89,7 +89,7 @@ internal fun ListItemCardsFilling(
 @Preview(showBackground = true)
 @Composable
 private fun ListItemCardPreview() {
-    ListItemCardsFilling(
+    ListItemCardInternal(
         avatarText = "A",
         headerTitle = "Header",
         headerSubtitle = "Subtitle",
@@ -107,7 +107,7 @@ private fun ListItemCardPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun ListItemCardPreview2() {
-    ListItemCardsFilling(
+    ListItemCardInternal(
         avatarText = "A",
         headerTitle = "Header",
         headerSubtitle = "",
@@ -125,7 +125,7 @@ private fun ListItemCardPreview2() {
 @Preview(showBackground = true)
 @Composable
 private fun ListItemCardPreview3() {
-    ListItemCardsFilling(
+    ListItemCardInternal(
         avatarText = "A",
         headerTitle = "Header Header Header Header ",
         headerSubtitle = "Subhead Subhead Subhead Subhead ",
@@ -143,7 +143,7 @@ private fun ListItemCardPreview3() {
 @Preview(showBackground = true)
 @Composable
 private fun ListItemCardPreview4() {
-    ListItemCardsFilling(
+    ListItemCardInternal(
         avatarText = "A",
         headerTitle = "Header Header Header Header Header Header Header ",
         headerSubtitle = "",
