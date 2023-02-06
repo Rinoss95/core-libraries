@@ -12,7 +12,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.main.components.SampleAppBar
 import com.example.main.components.SampleAppDrawer
-import com.example.main.components.SampleAppNavHost
 import com.example.main.model.AppRoute
 import com.example.main.theme.MyApplicationTheme
 import kotlinx.coroutines.launch
