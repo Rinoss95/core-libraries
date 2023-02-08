@@ -2,7 +2,6 @@ package com.example.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,13 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.component.list.BaseListItem2
-import com.rinoss95.core_ui.component.list.ExpandableListItem
 import com.rinoss95.core_ui.component.list.ExpandableListItem2
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
 import com.rinoss95.core_ui.component.text.TitleLarge
-import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.sample.R
-import com.rinoss95.core_ui.util.uiText
 
 @Composable
 fun ListItemsPage() {
@@ -32,9 +28,48 @@ fun ListItemsPage() {
             Column(
                 Modifier.padding(bottom = 16.dp),
             ) {
-                BaseListItemPreview()
+                var isExpanded by remember {
+                    mutableStateOf(true)
+                }
 
-                BaseListItem2Preview()
+                Column {
+                    TitleLarge(
+                        text = "BaseListItem2",
+                        Modifier.padding(top = 24.dp, bottom = 8.dp),
+                    )
+
+                    BaseListItem2(
+                        Modifier
+                            .padding(top = 8.dp)
+                            .clickable(onClick = {}),
+                        headlineText = "Headline text",
+                    )
+
+                    ExpandableListItem2(
+                        headlineText = "Headline Text",
+                        supportingText = "Supporting Text",
+                        hasDivider = isExpanded,
+                        isExpanded = isExpanded,
+                        onClick = {
+                            isExpanded = !isExpanded
+                        }
+                    ) {
+                        Column {
+                            val length = 3
+                            for (i in 1 until length) {
+                                BaseListItem(
+                                    headlineText = "Headline Text",
+                                    supportingText = "Supporting Text",
+                                    hasDivider = i == length - 1,
+                                )
+                            }
+                        }
+                    }
+
+                    for (trailing in trailings) {
+                        BaseListItem2Sets(trailing)
+                    }
+                }
             }
         }
     }
@@ -122,117 +157,6 @@ private val trailings = listOf(
     checkbox,
     switch,
 )
-
-@Preview(showBackground = true)
-@Composable
-fun BaseListItemPreview() {
-    TitleLarge(text = "BaseListItem")
-
-    Box(modifier = Modifier.padding(top = 24.dp))
-
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        trailingIcon = ImageData.IconImageData(
-            Icons.Filled.KeyboardArrowRight,
-            R.string.expand_content.uiText,
-        ),
-        hasDivider = true,
-    )
-
-    Box(modifier = Modifier.padding(top = 24.dp))
-
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        leadingIcon = ImageData.IconImageData(
-            Icons.Filled.KeyboardArrowRight,
-            R.string.expand_content.uiText,
-        ),
-        hasDivider = true,
-    )
-
-    Box(modifier = Modifier.padding(top = 24.dp))
-
-    BaseListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        leadingAvatarText = "A",
-        hasDivider = true,
-    )
-
-    Box(modifier = Modifier.padding(top = 24.dp))
-
-    var isExpanded by remember {
-        mutableStateOf(true)
-    }
-
-    ExpandableListItem(
-        headlineText = "Headline Text",
-        supportingText = "Supporting Text",
-        hasDivider = isExpanded,
-        isExpanded = isExpanded,
-        onClick = {
-            isExpanded = !isExpanded
-        }) {
-        Column {
-            val length = 3
-            for (i in 1 until length) {
-                BaseListItem(
-                    headlineText = "Headline Text",
-                    supportingText = "Supporting Text",
-                    hasDivider = i == length - 1,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun BaseListItem2Preview() {
-    var isExpanded by remember {
-        mutableStateOf(true)
-    }
-
-    Column {
-        TitleLarge(
-            text = "BaseListItem2",
-            Modifier.padding(top = 24.dp, bottom = 8.dp),
-        )
-
-        BaseListItem2(
-            Modifier
-                .padding(top = 8.dp)
-                .clickable(onClick = {}),
-            headlineText = "Headline text",
-        )
-
-        ExpandableListItem2(
-            headlineText = "Headline Text",
-            supportingText = "Supporting Text",
-            hasDivider = isExpanded,
-            isExpanded = isExpanded,
-            onClick = {
-                isExpanded = !isExpanded
-            }
-        ) {
-            Column {
-                val length = 3
-                for (i in 1 until length) {
-                    BaseListItem(
-                        headlineText = "Headline Text",
-                        supportingText = "Supporting Text",
-                        hasDivider = i == length - 1,
-                    )
-                }
-            }
-        }
-
-        for (trailing in trailings) {
-            BaseListItem2Sets(trailing)
-        }
-    }
-}
 
 @Composable
 fun BaseListItem2Sets(
