@@ -170,6 +170,7 @@ fun BaseListItem2Sets(
                         Modifier
                             .padding(top = 8.dp)
                             .clickable(onClick = {}),
+                        overlineText = "Overline text",
                         headlineText = "Headline text",
                         leading = leading,
                     )
@@ -178,6 +179,7 @@ fun BaseListItem2Sets(
                         Modifier
                             .padding(top = 8.dp)
                             .clickable(onClick = {}),
+                        overlineText = "Overline text",
                         headlineText = "Headline text",
                         leading = leading,
                         trailing = trailing,
@@ -187,6 +189,7 @@ fun BaseListItem2Sets(
                         Modifier
                             .padding(top = 8.dp)
                             .clickable(onClick = {}),
+                        overlineText = "Overline text",
                         headlineText = "Headline text",
                         supportingText = "Supporting text",
                         leading = leading,
@@ -197,6 +200,7 @@ fun BaseListItem2Sets(
                         Modifier
                             .padding(top = 8.dp)
                             .clickable(onClick = {}),
+                        overlineText = "Overline text",
                         headlineText = "Headline text",
                         supportingText = "Very long supporting text that cannot stay on one line",
                         leading = leading,
