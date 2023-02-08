@@ -3,6 +3,7 @@ package com.rinoss95.core_ui.component.list
 import androidx.compose.animation.*
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -23,10 +24,16 @@ fun ExpandableListItem2(
     supportingText: String = "",
     hasDivider: Boolean = false,
     isExpanded: Boolean = false,
+    onClick: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
+    val clickable = onClick?.let {
+        Modifier.clickable(onClick = it)
+    } ?: Modifier
+
     Column(modifier) {
         BaseListItem2(
+            clickable,
             headlineText = headlineText,
             supportingText = supportingText,
             leading = leading,
