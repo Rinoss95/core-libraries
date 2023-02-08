@@ -1,6 +1,7 @@
 package com.rinoss95.core_ui.component.list.internal
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Surface
@@ -25,6 +26,7 @@ internal fun RawListItem(
     trailing: (@Composable () -> Unit)?,
     headlineText: String,
     supportingText: String,
+    hasDivider: Boolean,
     verticalAlignment: Alignment.Vertical,
     padding: PaddingValues,
 ) {
@@ -41,35 +43,46 @@ internal fun RawListItem(
         tonalElevation = ListItemDefaults.Elevation,
         shadowElevation = ListItemDefaults.Elevation,
     ) {
-        Row(
-            modifier = Modifier.padding(padding),
-            verticalAlignment = verticalAlignment,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            if (hasLeading) {
-                leading!!()
-            }
+        Column {
+            Row(
+                modifier = Modifier.padding(padding),
+                verticalAlignment = verticalAlignment,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                if (hasLeading) {
+                    leading!!()
+                }
 
-            if (hasHeadline || hasSupporting) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                ) {
-                    if (hasHeadline) {
-                        BodyLarge(
-                            text = headlineText,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                        )
-                    }
+                if (hasHeadline || hasSupporting) {
+                    Column(
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        if (hasHeadline) {
+                            BodyLarge(
+                                text = headlineText,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        }
 
-                    if (hasSupporting) {
-                        BodyMedium(text = supportingText)
+                        if (hasSupporting) {
+                            BodyMedium(text = supportingText)
+                        }
                     }
+                }
+
+                if (hasTrailing) {
+                    trailing!!()
                 }
             }
 
-            if (hasTrailing) {
-                trailing!!()
+            if (hasDivider) {
+                Divider(
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        end = 24.dp,
+                    )
+                )
             }
         }
     }

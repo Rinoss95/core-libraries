@@ -32,6 +32,7 @@ fun BaseListItem2(
     trailing: (@Composable () -> Unit)? = null,
     headlineText: String = "",
     supportingText: String = "",
+    hasDivider: Boolean = false,
 ) {
     val density = LocalDensity.current
 
@@ -60,7 +61,8 @@ fun BaseListItem2(
                 modifier = modifier,
                 leading = leading,
                 trailing = trailing,
-                headlineText = headlineText
+                headlineText = headlineText,
+                hasDivider = hasDivider,
             )
         } else {
             withSupportingText(
@@ -73,6 +75,7 @@ fun BaseListItem2(
                 trailingWidth = trailingWidth,
                 headlineText = headlineText,
                 supportingText = supportingText,
+                hasDivider = hasDivider,
             )
         }
 
@@ -110,6 +113,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
     trailingWidth: Dp,
     headlineText: String,
     supportingText: String,
+    hasDivider: Boolean,
 ): Placeable {
     fun test(slotId: SlotId): Int {
         return subcompose(
@@ -146,6 +150,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                     SlotId.TestSingleLine -> "."
                     else -> supportingText
                 },
+                hasDivider = hasDivider,
             )
         }[0].measure(constraints).height
     }
@@ -171,6 +176,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                 trailing = trailing,
                 headlineText = headlineText,
                 supportingText = supportingText,
+                hasDivider = hasDivider,
             )
         }
     } else {
@@ -189,6 +195,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                 trailing = trailing,
                 headlineText = headlineText,
                 supportingText = supportingText,
+                hasDivider = hasDivider,
             )
         }
     }[0].measure(constraints)
@@ -201,6 +208,7 @@ private fun SubcomposeMeasureScope.withoutSupportingText(
     leading: (@Composable () -> Unit)?,
     trailing: (@Composable () -> Unit)?,
     headlineText: String,
+    hasDivider: Boolean,
 ): Placeable {
     return subcompose(SlotId.Actual) {
         RawListItem(
@@ -217,6 +225,7 @@ private fun SubcomposeMeasureScope.withoutSupportingText(
             trailing = trailing,
             headlineText = headlineText,
             supportingText = "",
+            hasDivider = hasDivider,
         )
     }[0].measure(constraints)
 }
