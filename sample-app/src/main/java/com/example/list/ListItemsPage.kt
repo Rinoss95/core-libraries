@@ -33,11 +33,7 @@ fun ListItemsPage() {
             ) {
                 BaseListItemPreview()
 
-                BaseListItem2Preview1()
-
-                BaseListItem2Preview2()
-
-                BaseListItem2Preview3()
+                BaseListItem2Preview()
             }
         }
     }
@@ -103,7 +99,7 @@ private val radio = @Composable {
 private val switch = @Composable {
     CompositionLocalProvider(LocalMinimumTouchTargetEnforcement provides false) {
         Switch(
-            checked = true,
+            checked = false,
             onCheckedChange = {},
         )
     }
@@ -116,6 +112,13 @@ private val leadings = listOf(
     thumbnailBig,
     checkbox,
     radio,
+    switch,
+)
+
+private val trailings = listOf(
+    iconArrowRight,
+    checkbox,
+    checkbox,
     switch,
 )
 
@@ -184,9 +187,8 @@ fun BaseListItemPreview() {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun BaseListItem2Preview1() {
+fun BaseListItem2Preview() {
     Column {
         TitleLarge(
             text = "BaseListItem2",
@@ -199,82 +201,87 @@ fun BaseListItem2Preview1() {
                 .clickable(onClick = {}),
             headlineText = "Headline text",
         )
-    }
-}
 
-@Preview(
-    showBackground = true,
-    heightDp = 2000,
-)
-@Composable
-fun BaseListItem2Preview2() {
-    Column {
-        for (leading in leadings) {
-            Set(
-                leading = leading,
-                trailing = iconArrowRight,
-            )
-        }
-    }
-}
-
-@Preview(
-    showBackground = true,
-    heightDp = 2000,
-)
-@Composable
-fun BaseListItem2Preview3() {
-    Column {
-        for (leading in leadings) {
-            Set(
-                leading = leading,
-                trailing = checkbox,
-            )
+        for (trailing in trailings) {
+            BaseListItem2Sets(trailing)
         }
     }
 }
 
 @Composable
-fun Set(
-    leading: @Composable () -> Unit,
+fun BaseListItem2Sets(
     trailing: @Composable () -> Unit,
 ) {
     Column {
-        BaseListItem2(
-            Modifier
-                .padding(top = 8.dp)
-                .clickable(onClick = {}),
-            headlineText = "Headline text",
-            leading = leading,
-        )
+        for (leading in leadings) {
+            if (leading !== trailing) {
+                Column {
+                    BaseListItem2(
+                        Modifier
+                            .padding(top = 8.dp)
+                            .clickable(onClick = {}),
+                        headlineText = "Headline text",
+                        leading = leading,
+                    )
 
-        BaseListItem2(
-            Modifier
-                .padding(top = 8.dp)
-                .clickable(onClick = {}),
-            headlineText = "Headline text",
-            leading = leading,
-            trailing = trailing,
-        )
+                    BaseListItem2(
+                        Modifier
+                            .padding(top = 8.dp)
+                            .clickable(onClick = {}),
+                        headlineText = "Headline text",
+                        leading = leading,
+                        trailing = trailing,
+                    )
 
-        BaseListItem2(
-            Modifier
-                .padding(top = 8.dp)
-                .clickable(onClick = {}),
-            headlineText = "Headline text",
-            supportingText = "Supporting text",
-            leading = leading,
-            trailing = trailing,
-        )
+                    BaseListItem2(
+                        Modifier
+                            .padding(top = 8.dp)
+                            .clickable(onClick = {}),
+                        headlineText = "Headline text",
+                        supportingText = "Supporting text",
+                        leading = leading,
+                        trailing = trailing,
+                    )
 
-        BaseListItem2(
-            Modifier
-                .padding(top = 8.dp)
-                .clickable(onClick = {}),
-            headlineText = "Headline text",
-            supportingText = "Very long supporting text that cannot stay on one line",
-            leading = leading,
-            trailing = trailing,
-        )
+                    BaseListItem2(
+                        Modifier
+                            .padding(top = 8.dp)
+                            .clickable(onClick = {}),
+                        headlineText = "Headline text",
+                        supportingText = "Very long supporting text that cannot stay on one line",
+                        leading = leading,
+                        trailing = trailing,
+                    )
+                }
+            }
+        }
     }
 }
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets1() = BaseListItem2Sets(trailings[0])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets2() = BaseListItem2Sets(trailings[1])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets3() = BaseListItem2Sets(trailings[2])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets4() = BaseListItem2Sets(trailings[3])
