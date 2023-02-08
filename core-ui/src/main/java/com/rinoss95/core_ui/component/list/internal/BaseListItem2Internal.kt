@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.text.BodyLarge
 import com.rinoss95.core_ui.component.text.BodyMedium
+import com.rinoss95.core_ui.component.text.LabelMedium
 
 internal object ListItemContentPadding {
     val Small = PaddingValues(16.dp, 8.dp, 24.dp, 8.dp)
@@ -24,6 +25,7 @@ internal fun RawListItem(
     modifier: Modifier = Modifier,
     leading: (@Composable () -> Unit)?,
     trailing: (@Composable () -> Unit)?,
+    overlineText: String,
     headlineText: String,
     supportingText: String,
     hasDivider: Boolean,
@@ -32,6 +34,7 @@ internal fun RawListItem(
 ) {
     val hasLeading = leading != null
     val hasTrailing = trailing != null
+    val hasOverlineText = overlineText.isNotBlank()
     val hasHeadline = headlineText.isNotBlank()
     val hasSupporting = supportingText.isNotBlank()
 
@@ -53,10 +56,18 @@ internal fun RawListItem(
                     leading!!()
                 }
 
-                if (hasHeadline || hasSupporting) {
+                if (hasOverlineText || hasHeadline || hasSupporting) {
                     Column(
                         modifier = Modifier.weight(1f),
                     ) {
+                        if (hasOverlineText) {
+                            LabelMedium(
+                                text = overlineText,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        }
+
                         if (hasHeadline) {
                             BodyLarge(
                                 text = headlineText,

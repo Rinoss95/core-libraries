@@ -30,6 +30,7 @@ fun BaseListItem2(
     modifier: Modifier = Modifier,
     leading: (@Composable () -> Unit)? = null,
     trailing: (@Composable () -> Unit)? = null,
+    overlineText: String = "",
     headlineText: String = "",
     supportingText: String = "",
     hasDivider: Boolean = false,
@@ -63,6 +64,7 @@ fun BaseListItem2(
                 trailing = trailing,
                 headlineText = headlineText,
                 hasDivider = hasDivider,
+                overlineText = overlineText,
             )
         } else {
             withSupportingText(
@@ -76,6 +78,7 @@ fun BaseListItem2(
                 headlineText = headlineText,
                 supportingText = supportingText,
                 hasDivider = hasDivider,
+                overlineText = overlineText,
             )
         }
 
@@ -111,6 +114,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
     leadingWidth: Dp,
     trailing: (@Composable () -> Unit)?,
     trailingWidth: Dp,
+    overlineText: String,
     headlineText: String,
     supportingText: String,
     hasDivider: Boolean,
@@ -151,6 +155,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                     else -> supportingText
                 },
                 hasDivider = hasDivider,
+                overlineText = overlineText,
             )
         }[0].measure(constraints).height
     }
@@ -177,6 +182,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                 headlineText = headlineText,
                 supportingText = supportingText,
                 hasDivider = hasDivider,
+                overlineText = overlineText,
             )
         }
     } else {
@@ -196,6 +202,7 @@ private fun SubcomposeMeasureScope.withSupportingText(
                 headlineText = headlineText,
                 supportingText = supportingText,
                 hasDivider = hasDivider,
+                overlineText = overlineText,
             )
         }
     }[0].measure(constraints)
@@ -207,6 +214,7 @@ private fun SubcomposeMeasureScope.withoutSupportingText(
     modifier: Modifier,
     leading: (@Composable () -> Unit)?,
     trailing: (@Composable () -> Unit)?,
+    overlineText: String,
     headlineText: String,
     hasDivider: Boolean,
 ): Placeable {
@@ -226,6 +234,7 @@ private fun SubcomposeMeasureScope.withoutSupportingText(
             headlineText = headlineText,
             supportingText = "",
             hasDivider = hasDivider,
+            overlineText = overlineText,
         )
     }[0].measure(constraints)
 }
