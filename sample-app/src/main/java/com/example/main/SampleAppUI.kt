@@ -60,9 +60,7 @@ fun SampleAppUI(
                         onSettingsClick = {
                             currentRoute = AppRoute.SettingsPage
 
-                            navController.navigate(AppRoute.SettingsPage.id) {
-                                popUpTo(0)
-                            }
+                            navController.navigate(AppRoute.SettingsPage.id)
                         }
                     )
                 }

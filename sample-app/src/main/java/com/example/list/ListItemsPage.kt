@@ -69,6 +69,10 @@ fun ListItemsPage() {
                     for (trailing in trailings) {
                         BaseListItem2Sets(trailing)
                     }
+
+                    for (trailing in trailings) {
+                        BaseListItem2Sets(trailing, true)
+                    }
                 }
             }
         }
@@ -161,6 +165,7 @@ private val trailings = listOf(
 @Composable
 fun BaseListItem2Sets(
     trailing: @Composable () -> Unit,
+    hasOverline: Boolean = false,
 ) {
     Column {
         for (leading in leadings) {
@@ -170,7 +175,7 @@ fun BaseListItem2Sets(
                         Modifier
                             .padding(top = 8.dp)
                             .clickable(onClick = {}),
-                        overlineText = "Overline text",
+                        overlineText = if (hasOverline) "Overline text" else "",
                         headlineText = "Headline text",
                         leading = leading,
                     )
@@ -239,3 +244,31 @@ fun BaseListItem2Sets3() = BaseListItem2Sets(trailings[2])
 )
 @Composable
 fun BaseListItem2Sets4() = BaseListItem2Sets(trailings[3])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets5() = BaseListItem2Sets(trailings[0])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets6() = BaseListItem2Sets(trailings[1])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets7() = BaseListItem2Sets(trailings[2])
+
+@Preview(
+    showBackground = true,
+    heightDp = 2000,
+)
+@Composable
+fun BaseListItem2Sets8() = BaseListItem2Sets(trailings[3])
