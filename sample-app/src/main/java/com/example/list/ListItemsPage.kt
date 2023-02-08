@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.component.list.BaseListItem2
 import com.rinoss95.core_ui.component.list.ExpandableListItem
+import com.rinoss95.core_ui.component.list.ExpandableListItem2
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.model.ImageData
@@ -189,6 +190,10 @@ fun BaseListItemPreview() {
 
 @Composable
 fun BaseListItem2Preview() {
+    var isExpanded by remember {
+        mutableStateOf(true)
+    }
+
     Column {
         TitleLarge(
             text = "BaseListItem2",
@@ -201,6 +206,27 @@ fun BaseListItem2Preview() {
                 .clickable(onClick = {}),
             headlineText = "Headline text",
         )
+
+        ExpandableListItem2(
+            headlineText = "Headline Text",
+            supportingText = "Supporting Text",
+            hasDivider = isExpanded,
+            isExpanded = isExpanded,
+            onClick = {
+                isExpanded = !isExpanded
+            }
+        ) {
+            Column {
+                val length = 3
+                for (i in 1 until length) {
+                    BaseListItem(
+                        headlineText = "Headline Text",
+                        supportingText = "Supporting Text",
+                        hasDivider = i == length - 1,
+                    )
+                }
+            }
+        }
 
         for (trailing in trailings) {
             BaseListItem2Sets(trailing)
