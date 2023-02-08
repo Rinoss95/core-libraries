@@ -11,8 +11,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.rinoss95.core_ui.component.text.BodyLarge
 import com.rinoss95.core_ui.component.text.BodyMedium
-import com.rinoss95.core_ui.util.copy
-import com.rinoss95.core_ui.util.start
 
 internal object ListItemContentPadding {
     val Small = PaddingValues(16.dp, 8.dp, 24.dp, 8.dp)
@@ -23,7 +21,6 @@ internal object ListItemContentPadding {
 @Composable
 internal fun RawListItem(
     modifier: Modifier = Modifier,
-    hasStartPadding: Boolean,
     leading: (@Composable () -> Unit)?,
     trailing: (@Composable () -> Unit)?,
     headlineText: String,
@@ -45,11 +42,7 @@ internal fun RawListItem(
         shadowElevation = ListItemDefaults.Elevation,
     ) {
         Row(
-            modifier = Modifier.padding(
-                padding.copy(
-                    start = if (hasStartPadding) padding.start() else 0.dp,
-                )
-            ),
+            modifier = Modifier.padding(padding),
             verticalAlignment = verticalAlignment,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
