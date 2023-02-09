@@ -219,6 +219,7 @@ private fun TwoContentCardsInARow() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 ContentCard(
+                    bodyTextTitle = "Card 1",
                     imageContent = {
                         Box(
                             modifier = Modifier
@@ -229,6 +230,7 @@ private fun TwoContentCardsInARow() {
                 )
 
                 ContentCard(
+                    bodyTextTitle = "Card 2",
                     imageContent = {
                         Box(
                             modifier = Modifier
