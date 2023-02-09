@@ -165,9 +165,7 @@ private fun BodyTextContent(
         hasSecondaryButton
     ) {
         Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .heightIn(min = 220.dp),
+            modifier = Modifier.padding(16.dp)
         ) {
             Column {
                 if (hasBodyTextTitle) {
