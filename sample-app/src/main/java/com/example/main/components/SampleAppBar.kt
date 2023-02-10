@@ -3,24 +3,23 @@ package com.example.main.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import com.example.main.model.AppRoute
-import com.rinoss95.core_ui.component.text.HeadlineMedium
+import com.rinoss95.core_ui.component.text.TitleLarge
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SampleAppBar(
     currentRoute: AppRoute,
     onMenuClick: () -> Unit,
-    onSettingsClick: () -> Unit,
+    onSettingsClick: (() -> Unit)? = null,
+    scrollBehavior: TopAppBarScrollBehavior,
 ) {
     TopAppBar(
+        scrollBehavior = scrollBehavior,
         title = {
-            HeadlineMedium(
+            TitleLarge(
                 text = currentRoute.displayName,
             )
         },
@@ -35,13 +34,15 @@ fun SampleAppBar(
             }
         },
         actions = {
-            IconButton(
-                onClick = onSettingsClick,
-            ) {
-                Icon(
-                    Icons.Filled.Settings,
-                    "",
-                )
+            if (onSettingsClick != null) {
+                IconButton(
+                    onClick = onSettingsClick,
+                ) {
+                    Icon(
+                        Icons.Filled.Settings,
+                        "",
+                    )
+                }
             }
         }
     )

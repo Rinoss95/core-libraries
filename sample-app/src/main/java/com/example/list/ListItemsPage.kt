@@ -3,9 +3,12 @@ package com.example.list
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Person
@@ -15,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.main.Page
+import com.example.main.model.AppRoute
 import com.rinoss95.core_ui.component.list.BaseListItem2
 import com.rinoss95.core_ui.component.list.ExpandableListItem2
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
@@ -104,18 +109,37 @@ private val trailings = listOf(
     switch,
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListItemsPage() {
+fun ListItemsPage(
+    onMenuClick: () -> Unit,
+    onSettingsClick: () -> Unit,
+    lazyListState: LazyListState = rememberLazyListState(),
+) {
     var isExpanded by remember {
         mutableStateOf(true)
     }
 
-    LazyColumn(Modifier.padding(bottom = 16.dp)) {
-        ExpandableList(isExpanded) {
-            isExpanded = !isExpanded
-        }
+    Page(
+        appRoute = AppRoute.ListPage,
+        onMenuClick = onMenuClick,
+        onSettingsClick = onSettingsClick,
+    ) {
+        LazyColumn(
+            modifier = it,
+            state = lazyListState,
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 16.dp,
+            ),
+        ) {
+            ExpandableList(isExpanded) {
+                isExpanded = !isExpanded
+            }
 
-        ListItemPreviews()
+            ListItemPreviews()
+        }
     }
 }
 

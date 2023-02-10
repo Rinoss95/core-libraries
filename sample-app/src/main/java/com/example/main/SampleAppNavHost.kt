@@ -14,23 +14,32 @@ fun SampleAppNavHost(
     navController: NavHostController,
     isDarkMode: Boolean,
     onDarkModeChange: (Boolean) -> Unit,
+    onMenuClick: () -> Unit,
+    onSettingsClick: () -> Unit,
 ) {
     NavHost(
         navController = navController,
         startDestination = AppRoute.ListPage.id,
     ) {
         composable(route = AppRoute.ListPage.id) {
-            ListItemsPage()
+            ListItemsPage(
+                onMenuClick = onMenuClick,
+                onSettingsClick = onSettingsClick,
+            )
         }
 
         composable(route = AppRoute.CardsPage.id) {
-            CardsPage()
+            CardsPage(
+                onMenuClick = onMenuClick,
+                onSettingsClick = onSettingsClick,
+            )
         }
 
         composable(route = AppRoute.SettingsPage.id) {
             SettingsPage(
-                isDarkMode,
-                onDarkModeChange,
+                isDarkMode = isDarkMode,
+                onDarkModeChange = onDarkModeChange,
+                onMenuClick = onMenuClick,
             )
         }
     }

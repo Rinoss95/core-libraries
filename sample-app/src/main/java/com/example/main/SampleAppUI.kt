@@ -1,26 +1,20 @@
 package com.example.main
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.main.components.SampleAppBar
 import com.example.main.components.SampleAppDrawer
 import com.example.main.model.AppRoute
-import com.example.main.theme.MyApplicationTheme
+import com.example.main.theme.SampleAppTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showBackground = true)
 fun SampleAppUI(
-    appViewModel: SampleAppViewModel = hiltViewModel(),
+    viewModel: SampleAppViewModel = hiltViewModel(),
 ) {
     val navController = rememberNavController()
 
@@ -32,8 +26,8 @@ fun SampleAppUI(
 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
 
-    MyApplicationTheme(
-        darkTheme = appViewModel.isDarkMode,
+    SampleAppTheme(
+        darkTheme = viewModel.isDarkMode,
     ) {
         SampleAppDrawer(
             drawerState = drawerState,
@@ -48,38 +42,23 @@ fun SampleAppUI(
                 }
             },
         ) {
-            Scaffold(
-                topBar = {
-                    SampleAppBar(
-                        currentRoute,
-                        onMenuClick = {
-                            uiScope.launch {
-                                drawerState.open()
-                            }
-                        },
-                        onSettingsClick = {
-                            currentRoute = AppRoute.SettingsPage
+            SampleAppNavHost(
+                navController = navController,
+                isDarkMode = viewModel.isDarkMode,
+                onDarkModeChange = {
+                    viewModel.isDarkMode = it
+                },
+                onMenuClick = {
+                    uiScope.launch {
+                        drawerState.open()
+                    }
+                },
+                onSettingsClick = {
+                    currentRoute = AppRoute.SettingsPage
 
-                            navController.navigate(AppRoute.SettingsPage.id)
-                        }
-                    )
+                    navController.navigate(AppRoute.SettingsPage.id)
                 }
-            ) { padding ->
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(padding)
-                        .padding(horizontal = 16.dp)
-                ) {
-                    SampleAppNavHost(
-                        navController,
-                        isDarkMode = appViewModel.isDarkMode,
-                        onDarkModeChange = {
-                            appViewModel.isDarkMode = it
-                        }
-                    )
-                }
-            }
+            )
         }
     }
 }

@@ -3,10 +3,12 @@ package com.example.card
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.main.Page
+import com.example.main.model.AppRoute
 import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.card.*
 import com.rinoss95.core_ui.component.text.HeadlineLarge
@@ -22,58 +26,78 @@ import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.sample.R
 import com.rinoss95.core_ui.util.uiText
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun CardsPage() {
-    LazyColumn {
-        item {
-            Column(
-                Modifier.padding(bottom = 16.dp),
-            ) {
-                TitleLarge(text = "Cards")
+internal fun CardsPage(
+    onMenuClick: () -> Unit,
+    onSettingsClick: () -> Unit,
+    lazyListState: LazyListState = rememberLazyListState(),
+) {
 
-                Box(modifier = Modifier.padding(top = 24.dp))
+    Page(
+        appRoute = AppRoute.CardsPage,
+        onMenuClick = onMenuClick,
+        onSettingsClick = onSettingsClick,
+    ) {
+        LazyColumn(
+            modifier = it,
+            state = lazyListState,
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 16.dp,
+            ),
+        ) {
+            item { TitleLarge(text = "Cards") }
 
+            item { Box(modifier = Modifier.padding(top = 24.dp)) }
+
+            item {
                 ElevatedCard {
                     HeadlineLarge(
                         "ElevatedCard",
                         modifier = Modifier.padding(16.dp)
                     )
                 }
+            }
 
-                Box(modifier = Modifier.padding(top = 24.dp))
+            item { Box(modifier = Modifier.padding(top = 24.dp)) }
 
+            item {
                 Card {
                     HeadlineLarge(
                         "FilledCard",
                         modifier = Modifier.padding(16.dp)
                     )
                 }
+            }
 
-                Box(modifier = Modifier.padding(top = 24.dp))
+            item { Box(modifier = Modifier.padding(top = 24.dp)) }
 
+            item {
                 OutlinedCard {
                     HeadlineLarge(
                         "OutlinedCard",
                         modifier = Modifier.padding(16.dp)
                     )
                 }
-
-                ContentCardExample()
-
-                ElevatedContentCardExample()
-
-                OutlinedContentCardExample()
-
-                TwoContentCardsInARow()
-
-                ContentCardWithImage()
-
-                ListItemCardExample()
-
-                ElevatedListItemCardExample()
-
-                OutlinedListItemCardExample()
             }
+
+            item { ContentCardExample() }
+
+            item { ElevatedContentCardExample() }
+
+            item { OutlinedContentCardExample() }
+
+            item { TwoContentCardsInARow() }
+
+            item { ContentCardWithImage() }
+
+            item { ListItemCardExample() }
+
+            item { ElevatedListItemCardExample() }
+
+            item { OutlinedListItemCardExample() }
         }
     }
 }
