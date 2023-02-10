@@ -108,7 +108,7 @@ fun ExpandableListItem2Preview() {
     ) {
         Column {
             for (i in 1..3) {
-                BaseListItem(
+                BaseListItem2(
                     headlineText = "Item $i"
                 )
             }
