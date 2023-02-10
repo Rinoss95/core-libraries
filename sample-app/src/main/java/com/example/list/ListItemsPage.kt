@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rinoss95.core_ui.component.list.BaseListItem
 import com.rinoss95.core_ui.component.list.BaseListItem2
 import com.rinoss95.core_ui.component.list.ExpandableListItem2
 import com.rinoss95.core_ui.component.miscellaneus.TextAvatar
@@ -139,7 +138,7 @@ fun LazyListScope.ExpandableList(isExpanded: Boolean, onClick: () -> Unit) {
             Column {
                 val length = 3
                 for (i in 1 until length) {
-                    BaseListItem(
+                    BaseListItem2(
                         headlineText = "Headline Text",
                         supportingText = "Supporting Text",
                         hasDivider = i == length - 1,
