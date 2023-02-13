@@ -1,4 +1,4 @@
-package com.rinoss95.core_ui.component.page
+package com.rinoss95.core_ui.component.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
