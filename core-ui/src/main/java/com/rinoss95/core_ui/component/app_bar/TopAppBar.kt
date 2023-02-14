@@ -34,10 +34,6 @@ import com.rinoss95.core_ui.util.value
 fun TopAppBar(
     data: AppBarData?,
     state: AppBarState,
-    onGoBack: () -> Unit = {},
-    onGoHome: () -> Unit = {},
-    onOpenDrawer: () -> Unit = {},
-    onSearchEnter: () -> Unit = {},
     onQueryChange: (String) -> Unit = {},
     onSearchExit: () -> Unit = {},
 ) {
@@ -95,11 +91,7 @@ fun TopAppBar(
                 else -> {
                     data?.navigationIcon?.let { navigation ->
                         IconButton(
-                            onClick = when (navigation) {
-                                is AppBarData.Navigation.Drawer -> onOpenDrawer
-
-                                is AppBarData.Navigation.GoBack -> onGoBack
-                            }
+                            onClick = navigation.navigate
                         ) {
                             ImageComponent(imageData = navigation.icon)
                         }
@@ -133,11 +125,7 @@ fun TopAppBar(
                 else -> {
                     data?.actions?.forEach { action ->
                         IconButton(
-                            onClick = when (action) {
-                                is AppBarData.Action.Search -> onSearchEnter
-
-                                is AppBarData.Action.Home -> onGoHome
-                            }
+                            onClick = action.perform
                         ) {
                             ImageComponent(imageData = action.icon)
                         }
