@@ -8,16 +8,6 @@ import androidx.compose.material.icons.filled.Search
 import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.util.uiText
 
-data class AppBarModel(
-    val state: SearchState = SearchState(),
-    val data: AppBarData = AppBarData(),
-)
-
-data class SearchState(
-    val isSearching: Boolean = false,
-    val query: String = "",
-)
-
 data class AppBarData(
     val title: UiText = UiText.Plain(),
     val navigationIcon: Navigation? = null,
@@ -36,7 +26,12 @@ data class AppBarData(
                 imageVector = Icons.Filled.Search,
                 contentDescription = R.string.search.uiText,
             ),
-        )
+        ) {
+            data class SearchState(
+                val isSearching: Boolean = false,
+                val query: String = "",
+            )
+        }
 
         class Home(
             val onNavigateToHome: () -> Unit,

@@ -11,7 +11,7 @@ import com.example.main.Page
 import com.example.main.model.AppRoute
 import com.rinoss95.core_ui.component.app_bar.TopAppBar
 import com.rinoss95.core_ui.model.AppBarData
-import com.rinoss95.core_ui.model.SearchState
+import com.rinoss95.core_ui.model.AppBarData.Action.Search.SearchState
 import com.rinoss95.core_ui.util.uiText
 
 @OptIn(ExperimentalMaterial3Api::class)

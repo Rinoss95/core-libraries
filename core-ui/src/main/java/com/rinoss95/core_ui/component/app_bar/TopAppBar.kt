@@ -27,8 +27,8 @@ import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.model.AppBarData
+import com.rinoss95.core_ui.model.AppBarData.Action.Search.SearchState
 import com.rinoss95.core_ui.model.ImageData
-import com.rinoss95.core_ui.model.SearchState
 import com.rinoss95.core_ui.util.uiText
 import com.rinoss95.core_ui.util.value
 
