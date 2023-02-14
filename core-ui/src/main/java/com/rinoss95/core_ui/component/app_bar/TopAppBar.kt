@@ -31,7 +31,7 @@ import com.rinoss95.core_ui.util.value
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun CountriesTopAppBar(
+fun TopAppBar(
     data: AppBarData?,
     state: AppBarState,
     onGoBack: () -> Unit = {},
@@ -160,7 +160,7 @@ fun CountriesTopAppBar(
 @Preview(showBackground = true)
 @Composable
 private fun CountriesTopAppBarPreview() {
-    CountriesTopAppBar(
+    TopAppBar(
         data = AppBarData(
             "All Countries".uiText,
             AppBarData.Navigation.Drawer(),
@@ -175,7 +175,7 @@ private fun CountriesTopAppBarPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun CountriesTopAppBarSearchPreview() {
-    CountriesTopAppBar(
+    TopAppBar(
         data = AppBarData(
             "All Countries".uiText,
             AppBarData.Navigation.Drawer(),
