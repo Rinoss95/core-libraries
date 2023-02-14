@@ -16,19 +16,19 @@ internal fun Page(
     onMenuClick: () -> Unit,
     onSettingsClick: (() -> Unit)? = null,
     topAppBarState: TopAppBarState = rememberTopAppBarState(),
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState),
+    topAppBar: @Composable () -> Unit = {
+        SampleAppBar(
+            appRoute,
+            onMenuClick = onMenuClick,
+            onSettingsClick = onSettingsClick,
+            scrollBehavior = scrollBehavior,
+        )
+    },
     content: @Composable (Modifier) -> Unit,
 ) {
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState)
-
     Scaffold(
-        topBar = {
-            SampleAppBar(
-                appRoute,
-                onMenuClick = onMenuClick,
-                onSettingsClick = onSettingsClick,
-                scrollBehavior = scrollBehavior,
-            )
-        },
+        topBar = topAppBar,
     ) { innerPadding ->
         content(
             Modifier

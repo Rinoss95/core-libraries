@@ -34,15 +34,21 @@ import com.rinoss95.core_ui.util.value
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun TopAppBar(
-    data: AppBarData?,
-    state: SearchState,
-    onQueryChange: (String) -> Unit = {},
-    onSearchExit: () -> Unit = {},
-) {
+fun TopAppBar(data: AppBarData?) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusRequester = remember { FocusRequester() }
     var showClearButton by remember { mutableStateOf(false) }
+
+    val searchAction = data?.actions?.firstOrNull {
+        it is AppBarData.Action.Search
+    }?.let { searchAction ->
+        (searchAction as AppBarData.Action.Search)
+    }
+
+    val state = searchAction?.state ?: SearchState()
+
+    val onQueryChange = searchAction?.onQueryChange ?: { }
+    val onSearchExit = searchAction?.onSearchExit ?: { }
 
     CenterAlignedTopAppBar(
         title = {
@@ -54,8 +60,8 @@ fun TopAppBar(
                         },
                         focusRequester = focusRequester,
                         query = state.query,
-                        onQueryChange,
-                        keyboardController,
+                        onQueryChange = onQueryChange,
+                        keyboardController = keyboardController,
                     )
                 }
 
@@ -175,7 +181,9 @@ private fun SearchTextField(
             .focusRequester(focusRequester),
         value = query,
         textStyle = MaterialTheme.typography.bodyLarge,
-        onValueChange = onQueryChange,
+        onValueChange = {
+            onQueryChange(it)
+        },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
@@ -195,10 +203,14 @@ private fun CountriesTopAppBarPreview() {
             "All Countries".uiText,
             AppBarData.Navigation.Drawer({}),
             listOf(
-                AppBarData.Action.Search({}),
+                AppBarData.Action.Search(
+                    SearchState(),
+                    {},
+                    {},
+                    {},
+                ),
             ),
         ),
-        state = SearchState(),
     )
 }
 
@@ -210,13 +222,16 @@ private fun CountriesTopAppBarSearchPreview() {
             "All Countries".uiText,
             AppBarData.Navigation.Drawer({}),
             listOf(
-                AppBarData.Action.Search({}),
-                AppBarData.Action.Search({})
+                AppBarData.Action.Search(
+                    SearchState(
+                        isSearching = true,
+                        query = "Sto cercando..."
+                    ),
+                    {},
+                    {},
+                    {},
+                ),
             ),
-        ),
-        state = SearchState(
-            isSearching = true,
-            query = "Sto cercando..."
         ),
     )
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.app_bar_page.AppBarPage
 import com.example.card.CardsPage
 import com.example.list.ListItemsPage
 import com.example.main.model.AppRoute
@@ -30,6 +31,13 @@ fun SampleAppNavHost(
 
         composable(route = AppRoute.CardsPage.id) {
             CardsPage(
+                onMenuClick = onMenuClick,
+                onSettingsClick = onSettingsClick,
+            )
+        }
+
+        composable(route = AppRoute.AppBarPage.id) {
+            AppBarPage(
                 onMenuClick = onMenuClick,
                 onSettingsClick = onSettingsClick,
             )

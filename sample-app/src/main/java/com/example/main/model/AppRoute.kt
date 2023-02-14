@@ -6,5 +6,6 @@ enum class AppRoute(
 ) {
     ListPage("list", "List"),
     CardsPage("cards", "Cards"),
+    AppBarPage("app_bar", "App Bar"),
     SettingsPage("settings", "Settings"),
 }

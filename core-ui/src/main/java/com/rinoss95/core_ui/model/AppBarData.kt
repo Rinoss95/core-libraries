@@ -27,7 +27,10 @@ data class AppBarData(
         val icon: ImageData,
     ) {
         class Search(
+            val state: SearchState,
             val onSearchEnter: () -> Unit,
+            val onSearchExit: () -> Unit,
+            val onQueryChange: (String) -> Unit,
         ) : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Search,
