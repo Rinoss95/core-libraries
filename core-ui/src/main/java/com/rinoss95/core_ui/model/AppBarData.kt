@@ -26,14 +26,14 @@ data class AppBarData(
     sealed class Action(
         val icon: ImageData,
     ) {
-        object Search : Action(
+        class Search : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Search,
                 contentDescription = R.string.search.uiText,
             )
         )
 
-        object Home : Action(
+        class Home : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Home,
                 contentDescription = R.string.home.uiText,
@@ -44,14 +44,14 @@ data class AppBarData(
     sealed class Navigation(
         val icon: ImageData,
     ) {
-        object GoBack : Navigation(
+        class GoBack : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = R.string.back_icon.uiText,
             )
         )
 
-        object Drawer : Navigation(
+        class Drawer : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Menu,
                 contentDescription = R.string.menu.uiText,

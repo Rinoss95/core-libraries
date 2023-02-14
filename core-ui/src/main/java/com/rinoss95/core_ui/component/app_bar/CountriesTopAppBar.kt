@@ -21,9 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.text.TitleLarge
-import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.model.AppBarData
 import com.rinoss95.core_ui.model.AppBarState
 import com.rinoss95.core_ui.util.uiText
@@ -96,9 +96,9 @@ fun CountriesTopAppBar(
                     data?.navigationIcon?.let { navigation ->
                         IconButton(
                             onClick = when (navigation) {
-                                AppBarData.Navigation.Drawer -> onOpenDrawer
+                                is AppBarData.Navigation.Drawer -> onOpenDrawer
 
-                                AppBarData.Navigation.GoBack -> onGoBack
+                                is AppBarData.Navigation.GoBack -> onGoBack
                             }
                         ) {
                             ImageComponent(imageData = navigation.icon)
@@ -134,9 +134,9 @@ fun CountriesTopAppBar(
                     data?.actions?.forEach { action ->
                         IconButton(
                             onClick = when (action) {
-                                AppBarData.Action.Search -> onSearchEnter
+                                is AppBarData.Action.Search -> onSearchEnter
 
-                                AppBarData.Action.Home -> onGoHome
+                                is AppBarData.Action.Home -> onGoHome
                             }
                         ) {
                             ImageComponent(imageData = action.icon)
@@ -163,9 +163,9 @@ private fun CountriesTopAppBarPreview() {
     CountriesTopAppBar(
         data = AppBarData(
             "All Countries".uiText,
-            AppBarData.Navigation.Drawer,
+            AppBarData.Navigation.Drawer(),
             listOf(
-                AppBarData.Action.Search
+                AppBarData.Action.Search()
             ),
         ),
         state = AppBarState(),
@@ -178,9 +178,9 @@ private fun CountriesTopAppBarSearchPreview() {
     CountriesTopAppBar(
         data = AppBarData(
             "All Countries".uiText,
-            AppBarData.Navigation.Drawer,
+            AppBarData.Navigation.Drawer(),
             listOf(
-                AppBarData.Action.Search
+                AppBarData.Action.Search()
             ),
         ),
         state = AppBarState(
