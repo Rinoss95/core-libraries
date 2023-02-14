@@ -15,10 +15,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.rinoss95.core_ui.R
@@ -26,6 +28,7 @@ import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.model.AppBarData
 import com.rinoss95.core_ui.model.AppBarState
+import com.rinoss95.core_ui.model.ImageData
 import com.rinoss95.core_ui.util.uiText
 import com.rinoss95.core_ui.util.value
 
@@ -45,24 +48,14 @@ fun TopAppBar(
         title = {
             when {
                 state.isSearching -> {
-                    BasicTextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .onFocusChanged { focusState ->
-                                showClearButton = (focusState.isFocused)
-                            }
-                            .focusRequester(focusRequester),
-                        value = state.query,
-                        textStyle = MaterialTheme.typography.bodyLarge,
-                        onValueChange = onQueryChange,
-                        maxLines = 1,
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-                        keyboardActions = KeyboardActions(
-                            onDone = {
-                                keyboardController?.hide()
-                            }
-                        ),
+                    SearchTextField(
+                        onFocusChanged = { focusState ->
+                            showClearButton = (focusState.isFocused)
+                        },
+                        focusRequester = focusRequester,
+                        query = state.query,
+                        onQueryChange,
+                        keyboardController,
                     )
                 }
 
@@ -75,61 +68,26 @@ fun TopAppBar(
         },
         navigationIcon = {
             when {
-                state.isSearching -> {
-                    IconButton(
-                        onClick = onSearchExit
-                    ) {
-                        ImageComponent(
-                            imageData = com.rinoss95.core_ui.model.ImageData.IconImageData(
-                                Icons.Filled.ArrowBack,
-                                R.string.exit_search.uiText,
-                            ),
-                        )
-                    }
-                }
+                state.isSearching -> ExitSearchButton(onSearchExit)
 
-                else -> {
-                    data?.navigationIcon?.let { navigation ->
-                        IconButton(
-                            onClick = navigation.navigate
-                        ) {
-                            ImageComponent(imageData = navigation.icon)
-                        }
+                else -> data?.navigationIcon?.let { navigation ->
+                    IconButton(
+                        onClick = navigation.navigate
+                    ) {
+                        ImageComponent(imageData = navigation.icon)
                     }
                 }
             }
         },
         actions = {
             when {
-                state.isSearching -> {
-                    AnimatedVisibility(
-                        enter = fadeIn(),
-                        exit = fadeOut(),
-                        visible = showClearButton,
-                    ) {
-                        IconButton(
-                            onClick = {
-                                onQueryChange("")
-                            }
-                        ) {
-                            ImageComponent(
-                                imageData = com.rinoss95.core_ui.model.ImageData.IconImageData(
-                                    imageVector = Icons.Filled.Close,
-                                    contentDescription = R.string.remove_search.uiText,
-                                ),
-                            )
-                        }
-                    }
-                }
+                state.isSearching -> ClearButton(
+                    showClearButton,
+                    onQueryChange,
+                )
 
-                else -> {
-                    data?.actions?.forEach { action ->
-                        IconButton(
-                            onClick = action.perform
-                        ) {
-                            ImageComponent(imageData = action.icon)
-                        }
-                    }
+                else -> data?.actions?.forEach { action ->
+                    ActionButton(action)
                 }
             }
         },
@@ -145,6 +103,82 @@ fun TopAppBar(
     }
 }
 
+@Composable
+fun ExitSearchButton(onSearchExit: () -> Unit) {
+    IconButton(
+        onClick = onSearchExit
+    ) {
+        ImageComponent(
+            imageData = ImageData.IconImageData(
+                Icons.Filled.ArrowBack,
+                R.string.exit_search.uiText,
+            ),
+        )
+    }
+}
+
+@Composable
+fun ActionButton(action: AppBarData.Action) {
+    IconButton(
+        onClick = action.perform
+    ) {
+        ImageComponent(imageData = action.icon)
+    }
+}
+
+@Composable
+private fun ClearButton(
+    showClearButton: Boolean,
+    onQueryChange: (String) -> Unit,
+) {
+    AnimatedVisibility(
+        enter = fadeIn(),
+        exit = fadeOut(),
+        visible = showClearButton,
+    ) {
+        IconButton(
+            onClick = {
+                onQueryChange("")
+            }
+        ) {
+            ImageComponent(
+                imageData = ImageData.IconImageData(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = R.string.remove_search.uiText,
+                ),
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+private fun SearchTextField(
+    onFocusChanged: (FocusState) -> Unit,
+    focusRequester: FocusRequester,
+    query: String,
+    onQueryChange: (String) -> Unit,
+    keyboardController: SoftwareKeyboardController?,
+) {
+    BasicTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .onFocusChanged(onFocusChanged)
+            .focusRequester(focusRequester),
+        value = query,
+        textStyle = MaterialTheme.typography.bodyLarge,
+        onValueChange = onQueryChange,
+        maxLines = 1,
+        singleLine = true,
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                keyboardController?.hide()
+            }
+        ),
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun CountriesTopAppBarPreview() {
@@ -153,7 +187,7 @@ private fun CountriesTopAppBarPreview() {
             "All Countries".uiText,
             AppBarData.Navigation.Drawer({}),
             listOf(
-                AppBarData.Action.Search({})
+                AppBarData.Action.Search({}),
             ),
         ),
         state = AppBarState(),
@@ -168,6 +202,7 @@ private fun CountriesTopAppBarSearchPreview() {
             "All Countries".uiText,
             AppBarData.Navigation.Drawer({}),
             listOf(
+                AppBarData.Action.Search({}),
                 AppBarData.Action.Search({})
             ),
         ),
