@@ -27,8 +27,8 @@ import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.component.ImageComponent
 import com.rinoss95.core_ui.component.text.TitleLarge
 import com.rinoss95.core_ui.model.AppBarData
-import com.rinoss95.core_ui.model.AppBarState
 import com.rinoss95.core_ui.model.ImageData
+import com.rinoss95.core_ui.model.SearchState
 import com.rinoss95.core_ui.util.uiText
 import com.rinoss95.core_ui.util.value
 
@@ -36,7 +36,7 @@ import com.rinoss95.core_ui.util.value
 @Composable
 fun TopAppBar(
     data: AppBarData?,
-    state: AppBarState,
+    state: SearchState,
     onQueryChange: (String) -> Unit = {},
     onSearchExit: () -> Unit = {},
 ) {
@@ -72,7 +72,11 @@ fun TopAppBar(
 
                 else -> data?.navigationIcon?.let { navigation ->
                     IconButton(
-                        onClick = navigation.navigate
+                        onClick = when (navigation) {
+                            is AppBarData.Navigation.Drawer -> navigation.onOpenDrawer
+
+                            is AppBarData.Navigation.GoBack -> navigation.onGoBack
+                        }
                     ) {
                         ImageComponent(imageData = navigation.icon)
                     }
@@ -120,7 +124,11 @@ fun ExitSearchButton(onSearchExit: () -> Unit) {
 @Composable
 fun ActionButton(action: AppBarData.Action) {
     IconButton(
-        onClick = action.perform
+        onClick = when (action) {
+            is AppBarData.Action.Home -> action.onNavigateToHome
+
+            is AppBarData.Action.Search -> action.onSearchEnter
+        }
     ) {
         ImageComponent(imageData = action.icon)
     }
@@ -190,7 +198,7 @@ private fun CountriesTopAppBarPreview() {
                 AppBarData.Action.Search({}),
             ),
         ),
-        state = AppBarState(),
+        state = SearchState(),
     )
 }
 
@@ -206,7 +214,7 @@ private fun CountriesTopAppBarSearchPreview() {
                 AppBarData.Action.Search({})
             ),
         ),
-        state = AppBarState(
+        state = SearchState(
             isSearching = true,
             query = "Sto cercando..."
         ),

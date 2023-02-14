@@ -9,11 +9,11 @@ import com.rinoss95.core_ui.R
 import com.rinoss95.core_ui.util.uiText
 
 data class AppBarModel(
-    val state: AppBarState = AppBarState(),
+    val state: SearchState = SearchState(),
     val data: AppBarData = AppBarData(),
 )
 
-data class AppBarState(
+data class SearchState(
     val isSearching: Boolean = false,
     val query: String = "",
 )
@@ -25,51 +25,45 @@ data class AppBarData(
 ) {
     sealed class Action(
         val icon: ImageData,
-        open val perform: () -> Unit,
     ) {
         class Search(
-            override val perform: () -> Unit,
+            val onSearchEnter: () -> Unit,
         ) : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Search,
                 contentDescription = R.string.search.uiText,
             ),
-            perform
         )
 
         class Home(
-            override val perform: () -> Unit,
+            val onNavigateToHome: () -> Unit,
         ) : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Home,
                 contentDescription = R.string.home.uiText,
             ),
-            perform
         )
     }
 
     sealed class Navigation(
         val icon: ImageData,
-        open val navigate: () -> Unit,
     ) {
         class GoBack(
-            override val navigate: () -> Unit,
+            val onGoBack: () -> Unit,
         ) : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = R.string.back_icon.uiText,
             ),
-            navigate
         )
 
         class Drawer(
-            override val navigate: () -> Unit,
+            val onOpenDrawer: () -> Unit,
         ) : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Menu,
                 contentDescription = R.string.menu.uiText,
             ),
-            navigate
         )
     }
 }
