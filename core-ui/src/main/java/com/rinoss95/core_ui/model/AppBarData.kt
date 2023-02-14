@@ -25,37 +25,51 @@ data class AppBarData(
 ) {
     sealed class Action(
         val icon: ImageData,
+        open val perform: () -> Unit,
     ) {
-        class Search : Action(
+        class Search(
+            override val perform: () -> Unit,
+        ) : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Search,
                 contentDescription = R.string.search.uiText,
-            )
+            ),
+            perform
         )
 
-        class Home : Action(
+        class Home(
+            override val perform: () -> Unit,
+        ) : Action(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Home,
                 contentDescription = R.string.home.uiText,
-            )
+            ),
+            perform
         )
     }
 
     sealed class Navigation(
         val icon: ImageData,
+        open val navigate: () -> Unit,
     ) {
-        class GoBack : Navigation(
+        class GoBack(
+            override val navigate: () -> Unit,
+        ) : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = R.string.back_icon.uiText,
-            )
+            ),
+            navigate
         )
 
-        class Drawer : Navigation(
+        class Drawer(
+            override val navigate: () -> Unit,
+        ) : Navigation(
             ImageData.IconImageData(
                 imageVector = Icons.Filled.Menu,
                 contentDescription = R.string.menu.uiText,
-            )
+            ),
+            navigate
         )
     }
 }

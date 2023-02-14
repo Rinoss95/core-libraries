@@ -163,9 +163,9 @@ private fun CountriesTopAppBarPreview() {
     TopAppBar(
         data = AppBarData(
             "All Countries".uiText,
-            AppBarData.Navigation.Drawer(),
+            AppBarData.Navigation.Drawer({}),
             listOf(
-                AppBarData.Action.Search()
+                AppBarData.Action.Search({})
             ),
         ),
         state = AppBarState(),
@@ -178,9 +178,9 @@ private fun CountriesTopAppBarSearchPreview() {
     TopAppBar(
         data = AppBarData(
             "All Countries".uiText,
-            AppBarData.Navigation.Drawer(),
+            AppBarData.Navigation.Drawer({}),
             listOf(
-                AppBarData.Action.Search()
+                AppBarData.Action.Search({})
             ),
         ),
         state = AppBarState(
